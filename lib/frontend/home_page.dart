@@ -103,7 +103,7 @@ class MyHome extends StatelessWidget {
                 style: TabStyle.reactCircle,
               ),
               body: TabBarView(
-//                physics: NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
 //                dragStartBehavior: DragStartBehavior.start,
                 children: [
                   NewPostPage(),
