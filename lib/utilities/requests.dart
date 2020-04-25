@@ -24,7 +24,7 @@ class Requests {
     return directory.path;
   }
 
-  static Future uploadImage() async {
+  static Future uploadImage(File fileImg) async {
     var path = "/upload_image";
 
 //    Future<String> networkImageToBase64(String imageUrl) async {
@@ -36,21 +36,24 @@ class Requests {
 //    print(imgBase64Str);
 
     print("HERERE");
+//    print("HERERE");
+
 //    final pth = await _localPath;
 //    File img = File.fromRawPath("assets/avatar2.jpg");
 //    print("file: " + img.path);
 
-    final byteData = await rootBundle.load('assets/avatar2.jpg');
-
-    final file = File('${(await getTemporaryDirectory()).path}/$path');
-    File img = await file.writeAsBytes(byteData.buffer
-        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+//    final byteData = await rootBundle.load('assets/avatar2.jpg');
+//
+//    final file = File('${(await getTemporaryDirectory()).path}/$path');
+//    File img = await file.writeAsBytes(byteData.buffer
+//        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
 //    print()
+    String base64Image = base64Encode(fileImg.readAsBytesSync());
 
-    String base64Image = base64Encode(img.readAsBytesSync());
+//    String base64Image = base64Encode(img.readAsBytesSync());
     print("base");
 
-    String fileName = img.path.split("/").last;
+    String fileName = fileImg.path.split("/").last;
 
     http.post("https://earth-hacks-eco-post.herokuapp.com" + path, body: {
       "image": base64Image,

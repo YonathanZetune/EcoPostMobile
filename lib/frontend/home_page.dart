@@ -62,6 +62,8 @@ class MyHome extends StatelessWidget {
                           color: Colors.white,
                           onPressed: () {
                             //TODO: Take to a point submission page
+                            Navigator.of(context).pushNamed('/PointsPage');
+
                           },
                         ),
                         AutoSizeText("35+")

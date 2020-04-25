@@ -9,7 +9,12 @@ class EcoPostInfo extends ChangeNotifier {
 ////    width: MediaQuery.of(context).size.width,
 ////    height: 300,
 
-static String _description = "";
+  static String _description = "";
+
+  static File _selectedImg = File(null);
+
+
+
 
   static bool _shouldShowBack = false;
   static int _activeIndex = 0;
@@ -19,11 +24,13 @@ static String _description = "";
 //  File get image => _image;
 
   bool get showMap => _shouldShowBack;
+
+  File get selectedImg => _selectedImg;
+
+
   String get description => _description;
 
-
   int get activeIndex => _activeIndex;
-
 
 //
 //  set image(File img) {
@@ -33,6 +40,11 @@ static String _description = "";
 
   set showMap(bool needIt) {
     _shouldShowBack = needIt;
+    notifyListeners();
+  }
+
+  set selectedImg(File needIt) {
+    _selectedImg = needIt;
     notifyListeners();
   }
 
