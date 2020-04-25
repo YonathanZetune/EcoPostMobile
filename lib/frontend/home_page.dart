@@ -6,6 +6,7 @@ import 'package:EcoPost/widgets/post_card.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,9 +18,10 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     tabs = new List<TabItem>();
-    tabs.add(TabItem(title: "Explore", icon: Icons.explore));
     tabs.add(TabItem(title: "Post", icon: Icons.add_a_photo));
+    tabs.add(TabItem(title: "Explore", icon: Icons.explore));
     tabs.add(TabItem(title: "Around Me", icon: Icons.map));
+//    TabController tc = new TabController(length: 3, vsync: TickerProvider);
 
     return MultiProvider(
       providers: [
@@ -27,8 +29,8 @@ class MyHome extends StatelessWidget {
       ],
       child: Container(
         child: DefaultTabController(
+          initialIndex: 1,
           length: 3,
-
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Constants.themeGreen,
@@ -69,9 +71,14 @@ class MyHome extends StatelessWidget {
                 ],
               ),
               bottomNavigationBar: ConvexAppBar(
+//                curveSize: 0,
+//                controller: tc,
                 initialActiveIndex: 0,
+                //Provider.of<EcoPostInfo>(context).activeIndex,
                 onTap: (ind) async {
 //                await Requests.getFires();
+                  var info = Provider.of<EcoPostInfo>(context);
+                  info.activeIndex = ind;
                   switch (ind) {
                     case 0:
                       Navigator.of(context).canPop()
@@ -88,13 +95,17 @@ class MyHome extends StatelessWidget {
                       break;
                   }
                 },
+
                 items: tabs,
                 backgroundColor: Constants.themeGreen,
                 style: TabStyle.reactCircle,
               ),
               body: TabBarView(
+//                physics: NeverScrollableScrollPhysics(),
+//                dragStartBehavior: DragStartBehavior.start,
                 children: [
-                   ListView.builder(
+                  NewPostPage(),
+                  ListView.builder(
                       itemCount: 2,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
@@ -108,9 +119,7 @@ class MyHome extends StatelessWidget {
                           ],
                         );
                       }),
-                  NewPostPage(),
                   AroundMe(),
-
                 ].map((i) => Center(child: i)).toList(growable: false),
               )),
         ),
