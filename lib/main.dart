@@ -3,6 +3,8 @@ import 'package:EcoPost/utilities/constants.dart';
 
 import 'package:flutter/material.dart';
 
+import 'frontend/profile_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
 //            create: (context) => FormInfo(), child: ReportPage()),
         '/HomePage': (context) => new MyHome(),
 //        '/ExplorePage': (context) => new ExplorePage(),
-//        '/ProfilePage': (context) => new ProfilePage(),
+        '/ProfilePage': (context) => new ProfilePage(),
       },
       theme: ThemeData(
         primaryColor: Constants.themeGreen,

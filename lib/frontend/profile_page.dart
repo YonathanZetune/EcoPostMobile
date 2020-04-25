@@ -1,5 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../utilities/constants.dart';
 
 const kLargeTextStyle = TextStyle(
   fontSize: 28,
@@ -22,6 +26,10 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: AutoSizeText("Tom Holland", style: GoogleFonts.teko(fontWeight: FontWeight.bold,letterSpacing: 6, fontSize: 30),),
+        backgroundColor: Constants.themeGreen,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(

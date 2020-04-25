@@ -35,6 +35,11 @@ class MyHome extends StatelessWidget {
                   letterSpacing: 7,
                 ))),
             leading: IconButton(
+              onPressed: () {
+                //GO to profile page
+                Navigator.of(context).pushNamed('/ProfilePage');
+
+              },
               icon: FaIcon(
                 FontAwesomeIcons.userCircle,
                 color: Colors.white,
@@ -74,7 +79,7 @@ class MyHome extends StatelessWidget {
                   break;
                 case 2:
                   //Navigator.of(context).canPop()
-                  Navigator.of(context).pushNamed('/ProfilePage');
+//                  Navigator.of(context).pushNamed('/ProfilePage');
                   // : print('cant push');
                   break;
               }

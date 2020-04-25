@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PostCard extends StatelessWidget {
   @override
@@ -59,6 +60,7 @@ class PostCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       FloatingActionButton(
+                        heroTag: FontAwesomeIcons.random.toString() + DateTime.now().toString(),
                         mini: true,
                         onPressed: () {},
                         child: Icon(
