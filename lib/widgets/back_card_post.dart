@@ -1,7 +1,9 @@
+import 'package:EcoPost/models/ecopost_info.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class BackCard extends StatelessWidget {
   static final Completer<GoogleMapController> mController = Completer();
@@ -14,9 +16,11 @@ class BackCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var postInfo = Provider.of<EcoPostInfo>(context);
     return Container(
 //        height: 300,
 //        width: MediaQuery.of(context).size.width,
+      color: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Card(
         elevation: 5,
@@ -40,8 +44,12 @@ class BackCard extends StatelessWidget {
                         zoomGesturesEnabled: false,
                         rotateGesturesEnabled: false,
                         scrollGesturesEnabled: false,
-                        initialCameraPosition:
-                        CameraPosition(target: LatLng(lat, long), zoom: 15.0),
+                        myLocationEnabled: false,
+                        compassEnabled: false,
+                        mapToolbarEnabled: false,
+
+                        initialCameraPosition: CameraPosition(
+                            target: LatLng(lat, long), zoom: 15.0),
 //        markers: mapInfo.fireMarkers,
                         // TODO: addmarkers
                         onMapCreated: (GoogleMapController controller) async {

@@ -12,12 +12,75 @@ import 'package:intl/intl.dart';
 
 class NewPostPage extends StatelessWidget {
 
-  Future<File> getImage(BuildContext context) async {
+  Future<File> getImage(BuildContext context, bool fromCamera) async {
     print("PICKING");
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image;
+    if(fromCamera)
+     image = await ImagePicker.pickImage(source: ImageSource.camera);
+    else
+      image = await ImagePicker.pickImage(source: ImageSource.gallery);
     //    var formInfo = Provider.of<FormInfo>(context, listen: false);
 //    showAlertDialog(context, image);
     return image;
+  }
+  showPictureSourceDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("From Camera"),
+      onPressed: () async {
+        getImage(context, true);
+        Navigator.of(context).pop();
+      },
+    );
+    Widget galleryButton = FlatButton(
+      child: Text("From Photos"),
+      onPressed: () async {
+        getImage(context, false);
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("How would you like to take a picture"),
+      content:
+      Text("Image is ready to be uploaded. Would you like to proceed?"),
+      actions: [
+        cancelButton,
+        continueButton,
+        galleryButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+//    AlertDialog alertSuccess = AlertDialog(
+//      title: Text("Form was received and updated databse!"),
+//      content:
+//      Text("You report is not available on the List tab"),
+//      actions: [
+//        cancelButton,
+//
+//      ],
+//    );
+//
+//    // show the dialog
+//    showDialogSuc(
+//      context: context,
+//      builder: (BuildContext context) {
+//        return alertSuccess;
+//      },
+//    );
   }
 
   @override
@@ -32,7 +95,7 @@ class NewPostPage extends StatelessWidget {
               elevation: 24,
               child: FlatButton(
                 onPressed: () async {
-                  await getImage(context);
+                  showPictureSourceDialog(context);
 
                   //Go to Leaderboard page
 //                  Navigator.of(context).pushNamed('/LeaderBoardPage');
@@ -51,7 +114,7 @@ class NewPostPage extends StatelessWidget {
                     ),
 
                     AutoSizeText(
-                      "Upload Image",
+                      "Select Image",
                       style: GoogleFonts.balooBhai(
                           fontSize: 25, color: Colors.white),
                     ),
