@@ -1,5 +1,6 @@
 import 'package:EcoPost/frontend/around_me_page.dart';
 import 'package:EcoPost/frontend/home_page.dart';
+import 'package:EcoPost/frontend/leaderboard_page.dart';
 import 'package:EcoPost/utilities/constants.dart';
 
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
         '/HomePage': (context) => new MyHome(),
 //        '/AroundMeTab': (context) => new AroundMe(),
         '/ProfilePage': (context) => new ProfilePage(),
+        '/LeaderBoardPage': (context) => new LeaderboardPage(),
+
       },
       theme: ThemeData(
         primaryColor: Constants.themeGreen,
