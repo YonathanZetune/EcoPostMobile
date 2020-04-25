@@ -1,3 +1,4 @@
+import 'package:EcoPost/frontend/around_me_page.dart';
 import 'package:EcoPost/models/ecopost_info.dart';
 import 'package:EcoPost/utilities/constants.dart';
 import 'package:EcoPost/widgets/post_card.dart';
@@ -81,7 +82,7 @@ class MyHome extends StatelessWidget {
                       break;
                     case 2:
                       //Navigator.of(context).canPop()
-                      Navigator.of(context).pushNamed('/AroundMe');
+//                      Navigator.of(context).pushNamed('/AroundMe');
                       // : print('cant push');
                       break;
                   }
@@ -107,7 +108,7 @@ class MyHome extends StatelessWidget {
                         );
                       }),
                   Text('B'),
-                  Text('C'),
+                  AroundMe(),
 
                 ].map((i) => Center(child: i)).toList(growable: false),
               )),

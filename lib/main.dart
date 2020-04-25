@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 //        '/ReportPage': (context) => ChangeNotifierProvider(
 //            create: (context) => FormInfo(), child: ReportPage()),
         '/HomePage': (context) => new MyHome(),
-        '/AroundMeTab': (context) => new AroundMe(),
+//        '/AroundMeTab': (context) => new AroundMe(),
         '/ProfilePage': (context) => new ProfilePage(),
       },
       theme: ThemeData(
