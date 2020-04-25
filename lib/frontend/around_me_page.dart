@@ -27,15 +27,18 @@ class AroundMe extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.clipboardList,
-                        color: Colors.white,
-                        size: 25,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.clipboardList,
+                          color: Colors.white,
+                          size: 30,
+                        ),
                       ),
                       AutoSizeText(
                         "View Leaderboard",
                         style: GoogleFonts.balooBhai(
-                            fontSize: 22, color: Colors.white),
+                            fontSize: 25, color: Colors.white),
                       ),
                       FaIcon(
                         FontAwesomeIcons.arrowAltCircleRight,

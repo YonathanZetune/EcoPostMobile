@@ -3,6 +3,9 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:EcoPost/utilities/constants.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_segmented_control/material_segmented_control.dart';
+
+import '../utilities/constants.dart';
 
 const kLeaderboardHeaderFontStyle = TextStyle(
   fontWeight: FontWeight.bold,
@@ -123,59 +126,85 @@ class LeaderboardPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-//                child: Text("DSFDF"),
-                child: ToggleButtons(
-                  children: <Widget>[
-                    Container(
-                      width: (MediaQuery.of(context).size.width - 36) / 3,
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            "DAILY",
-                            style: TextStyle(color: Colors.black),
-                          )
-                        ],
-                      ),
+                child: MaterialSegmentedControl(
+                  children: {
+                    0: Text(
+                      "    DAY   ",
+                      style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
-                    Container(
-                        width: (MediaQuery.of(context).size.width - 36) / 3,
-                        child: new Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "WEEKLY",
-                              style: TextStyle(color: Colors.black),
-                            )
-                          ],
-                        )),
-                    Container(
-                        width: (MediaQuery.of(context).size.width - 36) / 3,
-                        child: new Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "MONTHLY",
-                              style: TextStyle(color: Colors.black),
-                            )
-                          ],
-                        )),
-                  ],
-                  onPressed: (int index) {
-//                setState(() {
-//                  for (int buttonIndex = 0;
-//                  buttonIndex < _isSelected.length;
-//                  buttonIndex++) {
-//                    if (buttonIndex == index) {
-//                      _isSelected[buttonIndex] = true;
-//                    } else {
-//                      _isSelected[buttonIndex] = false;
-//                    }
-//                  }
-//                });
+                    1: Text(
+                      "   WEEK   ",
+                      style: TextStyle(color: Colors.black, fontSize: 14),
+                    ),
+                    2: Text(
+                      "   MONTH   ",
+                      style: TextStyle(color: Colors.black, fontSize: 14),
+                    ),
                   },
-                  isSelected: _isSelected,
+                  horizontalPadding: EdgeInsets.all(3),
+                  selectionIndex: 0,
+                  borderColor: Colors.grey,
+                  selectedColor: Constants.themeLightGreen,
+                  unselectedColor: Colors.white,
+                  borderRadius: 12.0,
+                  onSegmentChosen: (index) {
+//                    setState(() {
+//                      _currentSelection = index;
+//                    });
+                  },
                 ),
+//                child: ToggleButtons(
+//                  children: <Widget>[
+//                    Container(
+//                      width: (MediaQuery.of(context).size.width - 36) / 3,
+//                      child: new Row(
+//                        mainAxisAlignment: MainAxisAlignment.center,
+//                        children: <Widget>[
+//                          Text(
+//                            "DAILY",
+//                            style: TextStyle(color: Colors.black),
+//                          )
+//                        ],
+//                      ),
+//                    ),
+//                    Container(
+//                        width: (MediaQuery.of(context).size.width - 36) / 3,
+//                        child: new Row(
+//                          mainAxisAlignment: MainAxisAlignment.center,
+//                          children: <Widget>[
+//                            Text(
+//                              "WEEKLY",
+//                              style: TextStyle(color: Colors.black),
+//                            )
+//                          ],
+//                        )),
+//                    Container(
+//                        width: (MediaQuery.of(context).size.width - 36) / 3,
+//                        child: new Row(
+//                          mainAxisAlignment: MainAxisAlignment.center,
+//                          children: <Widget>[
+//                            Text(
+//                              "MONTHLY",
+//                              style: TextStyle(color: Colors.black),
+//                            )
+//                          ],
+//                        )),
+//                  ],
+//                  onPressed: (int index) {
+////                setState(() {
+////                  for (int buttonIndex = 0;
+////                  buttonIndex < _isSelected.length;
+////                  buttonIndex++) {
+////                    if (buttonIndex == index) {
+////                      _isSelected[buttonIndex] = true;
+////                    } else {
+////                      _isSelected[buttonIndex] = false;
+////                    }
+////                  }
+////                });
+//                  },
+//                  isSelected: _isSelected,
+//                ),
               ),
               LeaderboardColumnTitle(),
               new ListView.builder(

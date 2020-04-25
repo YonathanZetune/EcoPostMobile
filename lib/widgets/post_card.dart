@@ -56,9 +56,11 @@ class PostCard extends StatelessWidget {
                       ),
                     ),
                   ),
+                  AutoSizeText("Awesome time cleaning Spring Creek!", wrapWords: true,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+
                       FloatingActionButton(
                         heroTag: FontAwesomeIcons.random.toString() + DateTime.now().toString(),
                         mini: true,

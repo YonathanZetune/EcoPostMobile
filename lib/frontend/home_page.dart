@@ -1,4 +1,5 @@
 import 'package:EcoPost/frontend/around_me_page.dart';
+import 'package:EcoPost/frontend/new_post_page.dart';
 import 'package:EcoPost/models/ecopost_info.dart';
 import 'package:EcoPost/utilities/constants.dart';
 import 'package:EcoPost/widgets/post_card.dart';
@@ -107,7 +108,7 @@ class MyHome extends StatelessWidget {
                           ],
                         );
                       }),
-                  Text('B'),
+                  NewPostPage(),
                   AroundMe(),
 
                 ].map((i) => Center(child: i)).toList(growable: false),
