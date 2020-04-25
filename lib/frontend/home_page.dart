@@ -24,84 +24,93 @@ class MyHome extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => EcoPostInfo()),
       ],
       child: Container(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Constants.themeGreen,
-            title: AutoSizeText('EcoPost',
-                minFontSize: 48,
-                style: GoogleFonts.grandHotel(
-                    textStyle: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 7,
-                ))),
-            leading: IconButton(
-              onPressed: () {
-                //GO to profile page
-                Navigator.of(context).pushNamed('/ProfilePage');
+        child: DefaultTabController(
+          length: 3,
 
-              },
-              icon: FaIcon(
-                FontAwesomeIcons.userCircle,
-                color: Colors.white,
-                size: 30,
-              ),
-            ),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: FaIcon(FontAwesomeIcons.leaf),
+          child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Constants.themeGreen,
+                title: AutoSizeText('EcoPost',
+                    minFontSize: 48,
+                    style: GoogleFonts.grandHotel(
+                        textStyle: TextStyle(
                       color: Colors.white,
-                      onPressed: () {
-                        //TODO: Take to a point submission page
-                      },
-                    ),
-                    AutoSizeText("35+")
-                  ],
+                      letterSpacing: 7,
+                    ))),
+                leading: IconButton(
+                  onPressed: () {
+                    //GO to profile page
+                    Navigator.of(context).pushNamed('/ProfilePage');
+                  },
+                  icon: FaIcon(
+                    FontAwesomeIcons.userCircle,
+                    color: Colors.white,
+                    size: 30,
+                  ),
                 ),
-              )
-            ],
-          ),
-          bottomNavigationBar: ConvexAppBar(
-            initialActiveIndex: 0,
-            onTap: (ind) async {
+                actions: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: FaIcon(FontAwesomeIcons.leaf),
+                          color: Colors.white,
+                          onPressed: () {
+                            //TODO: Take to a point submission page
+                          },
+                        ),
+                        AutoSizeText("35+")
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              bottomNavigationBar: ConvexAppBar(
+                initialActiveIndex: 0,
+                onTap: (ind) async {
 //                await Requests.getFires();
-              switch (ind) {
-                case 0:
-                  Navigator.of(context).canPop()
-                      ? Navigator.of(context).popAndPushNamed('/')
-                      : print('cant push');
-                  break;
-                case 1:
-                  Navigator.of(context).pushNamed('/ExplorePage');
-                  break;
-                case 2:
-                  //Navigator.of(context).canPop()
-//                  Navigator.of(context).pushNamed('/ProfilePage');
-                  // : print('cant push');
-                  break;
-              }
-            },
-            items: tabs,
-            backgroundColor: Constants.themeGreen,
-            style: TabStyle.reactCircle,
-          ),
-          body: new ListView.builder(
-              itemCount: 2,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    new PostCard(),
-                    Divider(
-                      thickness: 3,
-                      indent: 12,
-                      endIndent: 12,
-                    )
-                  ],
-                );
-              }),
+                  switch (ind) {
+                    case 0:
+                      Navigator.of(context).canPop()
+                          ? Navigator.of(context).popAndPushNamed('/')
+                          : print('cant push');
+                      break;
+                    case 1:
+                      Navigator.of(context).pushNamed('/ExplorePage');
+                      break;
+                    case 2:
+                      //Navigator.of(context).canPop()
+                      Navigator.of(context).pushNamed('/AroundMe');
+                      // : print('cant push');
+                      break;
+                  }
+                },
+                items: tabs,
+                backgroundColor: Constants.themeGreen,
+                style: TabStyle.reactCircle,
+              ),
+              body: TabBarView(
+                children: [
+                   ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            new PostCard(),
+                            Divider(
+                              thickness: 3,
+                              indent: 12,
+                              endIndent: 12,
+                            )
+                          ],
+                        );
+                      }),
+                  Text('B'),
+                  Text('C'),
+
+                ].map((i) => Center(child: i)).toList(growable: false),
+              )),
         ),
       ),
     );

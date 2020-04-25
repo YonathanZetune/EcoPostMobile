@@ -1,3 +1,4 @@
+import 'package:EcoPost/frontend/around_me_page.dart';
 import 'package:EcoPost/frontend/home_page.dart';
 import 'package:EcoPost/utilities/constants.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 //        '/ReportPage': (context) => ChangeNotifierProvider(
 //            create: (context) => FormInfo(), child: ReportPage()),
         '/HomePage': (context) => new MyHome(),
-//        '/ExplorePage': (context) => new ExplorePage(),
+        '/AroundMeTab': (context) => new AroundMe(),
         '/ProfilePage': (context) => new ProfilePage(),
       },
       theme: ThemeData(
