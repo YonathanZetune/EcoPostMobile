@@ -87,7 +87,7 @@ class ProfilePage extends StatelessWidget {
                     SocialButton(
                       icon: FontAwesomeIcons.snapchat,
                       iconColor: Color.fromRGBO(255, 252, 0, 1),
-                      containerColor: Color.fromRGBO(0, 0, 0, .2),
+                      containerColor: Colors.grey,
                     ),
                     SocialButton(
                       icon: FontAwesomeIcons.linkedinIn,
