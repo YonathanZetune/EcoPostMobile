@@ -34,6 +34,13 @@ class MyHome extends StatelessWidget {
                   color: Colors.white,
                   letterSpacing: 7,
                 ))),
+            leading: IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.userCircle,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
