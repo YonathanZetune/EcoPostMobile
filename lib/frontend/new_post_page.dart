@@ -49,6 +49,7 @@ class NewPostPage extends StatelessWidget {
                         size: 26,
                       ),
                     ),
+
                     AutoSizeText(
                       "Upload Image",
                       style: GoogleFonts.balooBhai(

@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -35,10 +36,15 @@ class AroundMe extends StatelessWidget {
                           size: 30,
                         ),
                       ),
-                      AutoSizeText(
-                        "View Leaderboard",
-                        style: GoogleFonts.balooBhai(
-                            fontSize: 25, color: Colors.white),
+                      RotateAnimatedTextKit(
+                          onTap: () {
+                            print("Tap Event");
+                          },
+                          text: ["View Leaderboard", "Compete With Friends!", "Updated Daily!"],
+                          textStyle: GoogleFonts.balooBhai(
+                              fontSize: 18, color: Colors.white), //TextStyle(fontSize: 18.0, fontFamily: "Horizon", color: Colors.white),
+                          textAlign: TextAlign.start,
+                          alignment: AlignmentDirectional.topStart // or Alignment.topLeft
                       ),
                       FaIcon(
                         FontAwesomeIcons.arrowAltCircleRight,

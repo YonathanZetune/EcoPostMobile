@@ -39,6 +39,8 @@ dependencies:
   google_maps_flutter: ^0.5.26+4
   material_segmented_control: ^2.0.11+1
   image_picker: ^0.6.5+2
+  animated_text_kit: ^2.0.0
+  rounded_loading_button: ^1.0.4
 
 
 
