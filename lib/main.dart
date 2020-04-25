@@ -1,6 +1,7 @@
 import 'package:EcoPost/frontend/around_me_page.dart';
 import 'package:EcoPost/frontend/home_page.dart';
 import 'package:EcoPost/frontend/leaderboard_page.dart';
+import 'package:EcoPost/frontend/login_page.dart';
 import 'package:EcoPost/frontend/point_redeem_page.dart';
 import 'package:EcoPost/utilities/constants.dart';
 
