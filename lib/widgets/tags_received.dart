@@ -7,8 +7,29 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:slimy_card/slimy_card.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 
-class TagReceivedCard extends StatelessWidget {
+class TagReceivedCard extends StatefulWidget {
+  @override
+  _TagReceivedCardState createState() => _TagReceivedCardState();
+}
+
+class _TagReceivedCardState extends State<TagReceivedCard> {
+  bool accepted = false;
+  bool _showTimer = true;
+
+  void onAccepted() {
+    setState(() {
+      accepted = true;
+    });
+  }
+
+  void completed() {
+    setState(() {
+      _showTimer = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +50,6 @@ class TagReceivedCard extends StatelessWidget {
 //        gradient: new LinearGradient(...),
       ),
       child: SlimyCard(
-
         color: Colors.white,
         width: MediaQuery.of(context).size.width * 0.95,
 //      topCardHeight: 200,
@@ -38,16 +58,18 @@ class TagReceivedCard extends StatelessWidget {
         topCardWidget: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Row(
               children: [
-                FaIcon(FontAwesomeIcons.solidBell, color: Colors.blue,),
+                FaIcon(
+                  FontAwesomeIcons.solidBell,
+                  color: Colors.blue,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: AutoSizeText(
-                    "Joe challenged you to tag:",
-                    style:
-                        GoogleFonts.monda(fontSize: 20, fontWeight: FontWeight.bold),
+                    "Joe terra-tagged you!",
+                    style: GoogleFonts.monda(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -55,7 +77,10 @@ class TagReceivedCard extends StatelessWidget {
             Chip(
               backgroundColor: Colors.deepPurple,
               padding: EdgeInsets.all(5),
-              label: Text("#trashtag", style: GoogleFonts.monda(fontSize: 15, color: Colors.white),),
+              label: Text(
+                "#trashtag",
+                style: GoogleFonts.monda(fontSize: 15, color: Colors.white),
+              ),
 //              color: Colors.blue,
 ////              shape: ShapeBorder.,
 //              onPressed: () {},
@@ -77,43 +102,144 @@ class TagReceivedCard extends StatelessWidget {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                FlatButton(
-                    padding: const EdgeInsets.all(8.0),
-                    color: Colors.green,
-                    onPressed: () {},
-                    child: AutoSizeText(
-                      "Accept",
-                      style: GoogleFonts.monda(fontSize: 20, color: Colors.white),
-                    )),
-                FlatButton(
-                  padding: const EdgeInsets.all(8.0),
-                  color: Colors.red,
-                  onPressed: () {},
-                  child: AutoSizeText(
-                    "Deline",
-                    style: GoogleFonts.monda(fontSize: 20, color: Colors.white),
-                  ),
-                ),
-              ],
-            )
+            accepted == false
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      FlatButton(
+                          padding: const EdgeInsets.all(8.0),
+                          color: Colors.green,
+                          onPressed: onAccepted,
+                          child: AutoSizeText(
+                            "Accept",
+                            style: GoogleFonts.monda(
+                                fontSize: 20, color: Colors.white),
+                          )),
+                      FlatButton(
+                        padding: const EdgeInsets.all(8.0),
+                        color: Colors.red,
+                        onPressed: () {},
+                        child: AutoSizeText(
+                          "Decline",
+                          style: GoogleFonts.monda(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  )
+                : _showTimer
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          FaIcon(FontAwesomeIcons.hourglass),
+                          Row(
+                            children: [
+                              CountDown(
+                                seconds: 10,
+                                onTimer: () {
+                                  setState(() {
+                                    _showTimer = false;
+                                  });
+                                },
+                                style: GoogleFonts.monda(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "s",
+                                style: GoogleFonts.monda(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          FlatButton(
+                            padding: const EdgeInsets.all(8.0),
+                            color: Constants.themeGreen,
+                            onPressed: completed,
+                            child: AutoSizeText(
+                              "Completed",
+                              style: GoogleFonts.monda(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Text(
+                              "Time is up!",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.monda(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
           ],
         ),
         bottomCardWidget: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: AutoSizeText(
-                "Accept and complete within 24hrs to receive 25 terra points!",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.monda(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FaIcon(FontAwesomeIcons.leaf),
+                Text(
+                  ' 25',
+                  style: GoogleFonts.monda(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+              ],
             ),
+            accepted == false
+                ? Container(
+                    child: Text(
+                      "Accept and complete within 24 hours to receive 25 terra points!",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.monda(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                : _showTimer == true
+                    ? Center(
+                        child: RichText(
+                          text: TextSpan(
+                              style: GoogleFonts.monda(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                              children: [
+                                TextSpan(text: "You\'re "),
+                                TextSpan(
+                                    text: "IT",
+                                    style:
+                                        TextStyle(color: Constants.themeGreen)),
+                                TextSpan(text: "! Show us what you can do!"),
+                              ]),
+                        ),
+                      )
+                    : Container(
+                        child: Text(
+                          "If you completed the challenge on time, your points will be awarded soon.",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.monda(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
           ],
         ),
         slimeEnabled: true,
@@ -127,7 +253,6 @@ class TagsReceived extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SizedBox(
-
         height: 300,
         child: ListView.builder(
           padding: EdgeInsets.zero,

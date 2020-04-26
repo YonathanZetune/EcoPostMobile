@@ -46,6 +46,7 @@ dependencies:
   skeleton_text: any
   toggle_switch: ^0.1.4
   slimy_card: ^1.0.4
+  timer_count_down: ^1.0.1
 
 
 
