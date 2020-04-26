@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:EcoPost/utilities/constants.dart';
@@ -45,7 +47,7 @@ class LeaderboardPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Container(),
-              WinnersText(text: "1st Place", name: "Tom Holland"),
+              WinnersText(text: "1st Place", name: "Anna B."),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, screenHeight / 45, 0, 0),
                 child: Stack(
@@ -69,8 +71,7 @@ class LeaderboardPage extends StatelessWidget {
                             color: Constants.themeGreen,
                           ),
                           image: DecorationImage(
-                            image: NetworkImage(
-                                'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
+                            image: AssetImage('assets/pfp.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -84,13 +85,12 @@ class LeaderboardPage extends StatelessWidget {
                         height: 140,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                           border: Border.all(
+                          border: Border.all(
                             width: 5,
                             color: Constants.themeGreen,
                           ),
                           image: DecorationImage(
-                            image: NetworkImage(
-                                'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
+                            image: AssetImage('assets/neil.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -103,13 +103,12 @@ class LeaderboardPage extends StatelessWidget {
                         height: 140,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                           border: Border.all(
+                          border: Border.all(
                             width: 5,
                             color: Constants.themeGreen,
                           ),
                           image: DecorationImage(
-                            image: NetworkImage(
-                                'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
+                            image: AssetImage('assets/anna.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -131,8 +130,8 @@ class LeaderboardPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    WinnersText(text: "2nd Place", name: "Tom Holland"),
-                    WinnersText(text: "3rd Place", name: "Tom Holland"),
+                    WinnersText(text: "2nd Place", name: "Neil D."),
+                    WinnersText(text: "3rd Place", name: "Dylan T."),
                   ],
                 ),
               ),
@@ -165,68 +164,18 @@ class LeaderboardPage extends StatelessWidget {
 //                    });
                   },
                 ),
-//                child: ToggleButtons(
-//                  children: <Widget>[
-//                    Container(
-//                      width: (MediaQuery.of(context).size.width - 36) / 3,
-//                      child: new Row(
-//                        mainAxisAlignment: MainAxisAlignment.center,
-//                        children: <Widget>[
-//                          Text(
-//                            "DAILY",
-//                            style: TextStyle(color: Colors.black),
-//                          )
-//                        ],
-//                      ),
-//                    ),
-//                    Container(
-//                        width: (MediaQuery.of(context).size.width - 36) / 3,
-//                        child: new Row(
-//                          mainAxisAlignment: MainAxisAlignment.center,
-//                          children: <Widget>[
-//                            Text(
-//                              "WEEKLY",
-//                              style: TextStyle(color: Colors.black),
-//                            )
-//                          ],
-//                        )),
-//                    Container(
-//                        width: (MediaQuery.of(context).size.width - 36) / 3,
-//                        child: new Row(
-//                          mainAxisAlignment: MainAxisAlignment.center,
-//                          children: <Widget>[
-//                            Text(
-//                              "MONTHLY",
-//                              style: TextStyle(color: Colors.black),
-//                            )
-//                          ],
-//                        )),
-//                  ],
-//                  onPressed: (int index) {
-////                setState(() {
-////                  for (int buttonIndex = 0;
-////                  buttonIndex < _isSelected.length;
-////                  buttonIndex++) {
-////                    if (buttonIndex == index) {
-////                      _isSelected[buttonIndex] = true;
-////                    } else {
-////                      _isSelected[buttonIndex] = false;
-////                    }
-////                  }
-////                });
-//                  },
-//                  isSelected: _isSelected,
-//                ),
               ),
               LeaderboardColumnTitle(),
               new ListView.builder(
 //              physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 7,
+                  itemCount: 5,
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
                       children: [
-                        LeaderboardRow(),
+                        LeaderboardRow(
+                          index: index,
+                        ),
                       ],
                     );
                   }),
@@ -239,6 +188,77 @@ class LeaderboardPage extends StatelessWidget {
 }
 
 class LeaderboardRow extends StatelessWidget {
+  final int index;
+
+  LeaderboardRow({this.index});
+
+  String getImage(int i) {
+    switch (i) {
+      case 0:
+        return 'assets/anna.png';
+        break;
+      case 1:
+        return 'assets/neil.jpg';
+      case 2:
+        return 'assets/pfp.png';
+        break;
+      case 3:
+        return 'assets/avatar1.JPG';
+      case 4:
+        return 'assets/anooj.png';
+        break;
+      case 5:
+        return 'assets/mel.jpg';
+        break;
+      default:
+        return 'assets/neil.jpg';
+    }
+  }
+
+  String getName(int i) {
+    switch (i) {
+      case 0:
+        return 'Anna';
+        break;
+      case 1:
+        return 'Neil';
+      case 2:
+        return 'Dylan';
+        break;
+      case 3:
+        return 'Yonathan';
+      case 4:
+        return 'Anooj';
+        break;
+      case 5:
+        return 'assets/mel.jpg';
+        break;
+      default:
+        return 'assets/neil.jpg';
+    }
+  }
+  String getPoints(int i) {
+    switch (i) {
+      case 0:
+        return '486';
+        break;
+      case 1:
+        return '345';
+      case 2:
+        return '324';
+        break;
+      case 3:
+        return '311';
+      case 4:
+        return '234';
+        break;
+      case 5:
+        return 'assets/mel.jpg';
+        break;
+      default:
+        return 'assets/neil.jpg';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -249,16 +269,17 @@ class LeaderboardRow extends StatelessWidget {
           children: [
             CircularProfileAvatar(
               '',
-              child: Image(image: AssetImage('assets/avatar1.JPG')),
+              child:
+                  Image(fit: BoxFit.cover, image: AssetImage(getImage(index))),
               radius: 25,
               borderColor: Constants.themeGreen,
               borderWidth: 4,
             ),
-            AutoSizeText("Yonathan Zetune"),
+            AutoSizeText(getName(index)),
             Container(),
             Container(),
             Container(),
-            Text("300"),
+            Text(getPoints(index)),
           ],
         ),
       ),
