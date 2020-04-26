@@ -1,5 +1,6 @@
 import 'package:EcoPost/frontend/around_me_page.dart';
 import 'package:EcoPost/frontend/challenge_page.dart';
+import 'package:EcoPost/frontend/explore_page.dart';
 import 'package:EcoPost/frontend/new_post_page.dart';
 import 'package:EcoPost/models/ecopost_info.dart';
 import 'package:EcoPost/utilities/constants.dart';
@@ -114,20 +115,7 @@ class MyHome extends StatelessWidget {
 //                dragStartBehavior: DragStartBehavior.start,
                 children: [
                   NewPostPage(),
-                  ListView.builder(
-                      itemCount: 2,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            new PostCard(),
-                            Divider(
-                              thickness: 3,
-                              indent: 12,
-                              endIndent: 12,
-                            )
-                          ],
-                        );
-                      }),
+                  ExplorePage(),
                   ChallengePage(),
                   AroundMe(),
 

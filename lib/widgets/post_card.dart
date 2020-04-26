@@ -25,6 +25,34 @@ import 'package:skeleton_text/skeleton_text.dart';
 class PostCard extends StatelessWidget {
 //  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   FlipController controller = new FlipController();
+  final String image;
+  final double lat;
+  final double lon;
+  final String name;
+  final String location;
+
+  final String description;
+  final String timestamp;
+  final String challenge;
+  final String handle;
+  final String profPic;
+  final String hashtag;
+  final int likes;
+
+
+  PostCard(
+      {this.image,
+      this.lat,
+      this.lon,
+      this.location,
+      this.name,
+      this.description,
+      this.timestamp,
+      this.challenge,
+      this.handle,
+      this.profPic,
+      this.hashtag,
+      this.likes});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +98,14 @@ class PostCard extends StatelessWidget {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AutoSizeText("#feeling-clean", textAlign: TextAlign.start, style: GoogleFonts.abel(fontStyle: FontStyle.italic, color: Colors.blue, fontSize: 20),),
+                    AutoSizeText(
+                      hashtag,
+                      textAlign: TextAlign.start,
+                      style: GoogleFonts.abel(
+                          fontStyle: FontStyle.italic,
+                          color: Colors.blue,
+                          fontSize: 20),
+                    ),
                     Row(
                       children: [
                         FloatingRibbon(
@@ -80,13 +115,16 @@ class PostCard extends StatelessWidget {
                           childWidth: 70,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: CircularProfileAvatar(
-                              '',
-                              child: Image(
-                                  image: AssetImage('assets/avatar1.JPG')),
-//                              radius: 20,
-                              borderColor: Constants.themeGreen,
-                              borderWidth: 4,
+                            child: Container(
+                              width: 140,
+                              height: 140,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: NetworkImage(image),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                           ),
 //                  childDecoration: BoxDecoration(color: Colors.grey),
@@ -109,16 +147,31 @@ class PostCard extends StatelessWidget {
                           thickness: 2,
                           color: Colors.grey,
                         ),
-                        AutoSizeText("Yonathan Zetune")
+                        Column(
+                          children: [
+                            AutoSizeText(name),
+                            AutoSizeText(
+                              handle,
+                              style: GoogleFonts.monda(
+                                  color: Colors.grey,
+                                  fontStyle: FontStyle.italic),
+                            ),
+                            AutoSizeText(
+                              location,
+                              style: GoogleFonts.monda(
+                                  color: Colors.blue,
+                                  fontStyle: FontStyle.italic),
+                            ),
+                          ],
+                        )
                       ],
                     ),
-
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset(
-                          "assets/trashtag1.jpg",
+                        child: Image.network(
+                          image,
                         ),
                       ),
                     ),
@@ -133,12 +186,17 @@ class PostCard extends StatelessWidget {
                                 child: Badge(
                                   position: BadgePosition.bottomRight(),
                                   badgeColor: Constants.themeLightGreen,
-                                  badgeContent: AutoSizeText("32", style: TextStyle(fontSize: 16,color: Colors.white),),
+                                  badgeContent: AutoSizeText(
+                                    likes.toString(),
+                                    style: TextStyle(
+                                        fontSize: 10, color: Colors.white),
+                                  ),
                                   child: FloatingActionButton(
                                     backgroundColor: Colors.white,
                                     elevation: 10,
-                                    heroTag: FontAwesomeIcons.random.toString() +
-                                        DateTime.now().toString(),
+                                    heroTag:
+                                        FontAwesomeIcons.random.toString() +
+                                            DateTime.now().toString(),
                                     mini: true,
                                     onPressed: () {},
                                     child: FaIcon(
@@ -186,7 +244,7 @@ class PostCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             AutoSizeText(
-                              "4 hours ago",
+                              timestamp,
                               style: GoogleFonts.zillaSlab(),
                             )
                           ],
@@ -196,7 +254,7 @@ class PostCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: AutoSizeText(
-                        "Awesome time cleaning Spring Creek!",
+                        description,
                         style: GoogleFonts.rokkitt(fontSize: 20),
                         wrapWords: true,
                       ),
@@ -208,7 +266,7 @@ class PostCard extends StatelessWidget {
           ),
         ),
         secondChild:
-            BackCard(lat: 33.071153, long: -96.704665), // : FrontCard(),
+            BackCard(lat: lat, long: lon), // : FrontCard(),
       ),
     );
   }

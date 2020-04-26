@@ -135,7 +135,7 @@ class _TagReceivedCardState extends State<TagReceivedCard> {
                           Row(
                             children: [
                               CountDown(
-                                seconds: 10,
+                                seconds: 58,
                                 onTimer: () {
                                   setState(() {
                                     _showTimer = false;

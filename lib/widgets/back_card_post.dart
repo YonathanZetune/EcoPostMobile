@@ -17,6 +17,16 @@ class BackCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var postInfo = Provider.of<EcoPostInfo>(context);
+//    var markerIdVal = MyWayToGenerateId();
+    final MarkerId markerId = MarkerId("24213");
+    Set<Marker> mrks = new Set<Marker>();
+    Marker marker = new Marker(
+        markerId: markerId,
+        position: LatLng(
+          lat,
+          long,
+        ));
+    mrks.add(marker);
     return Container(
 //        height: 300,
 //        width: MediaQuery.of(context).size.width,
@@ -50,6 +60,7 @@ class BackCard extends StatelessWidget {
 
                         initialCameraPosition: CameraPosition(
                             target: LatLng(lat, long), zoom: 15.0),
+                        markers: mrks,
 //        markers: mapInfo.fireMarkers,
                         // TODO: addmarkers
                         onMapCreated: (GoogleMapController controller) async {

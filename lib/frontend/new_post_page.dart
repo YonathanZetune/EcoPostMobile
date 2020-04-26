@@ -216,7 +216,7 @@ class _NewPostPageState extends State<NewPostPage> {
                     setState(() {
                       description = des;
                     });
-                    await Requests.uploadNewPost(_image, description, "NotWiredUP");
+                    await Requests.uploadNewPost(_image, description, "insert handle");
 
                     postInfo.description = des;
                     FocusScope.of(context).unfocus();
