@@ -90,8 +90,9 @@ class LoginPage extends StatelessWidget {
 //                    totalRepeatCount: 4,
                               isRepeatingAnimation: true,
                               pause: Duration(milliseconds: 1000),
-                              text: ["EcoPost"],
-                              textStyle: GoogleFonts.grandHotel(
+                              text: [" terra"],
+                              textStyle: GoogleFonts.poiretOne(
+
                                   textStyle: TextStyle(
                                       color: Colors.white,
                                       letterSpacing: 5,

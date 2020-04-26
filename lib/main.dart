@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Constants.themeGreen,
           ),
       // TODO: Add boolean using shared pref package to only show login once
-      home: MyHome(),
+      home: LoginPage(),
     );
   }
 }
