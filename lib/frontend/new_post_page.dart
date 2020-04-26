@@ -22,6 +22,8 @@ class NewPostPage extends StatefulWidget {
 
 class _NewPostPageState extends State<NewPostPage> {
   File _image;
+  String description;
+  String handles;
 
   Future getImage(BuildContext context, bool fromCamera) async {
     print("PICKING");
@@ -34,7 +36,7 @@ class _NewPostPageState extends State<NewPostPage> {
         });
 //        var info = Provider.of<EcoPostInfo>(context);
 //        info.selectedImg = value;
-        await Requests.uploadImage(value);
+//        await Requests.uploadNewPost(value, description, "NotWiredUP");
 //        showPictureSuccessDialog(context);
       });
     else {
@@ -46,7 +48,7 @@ class _NewPostPageState extends State<NewPostPage> {
 //        var info = Provider.of<EcoPostInfo>(context);
 //        info.selectedImg = value;
 //        setImageOnScreen(value, context);
-        await Requests.uploadImage(value);
+//        await Requests.uploadNewPost(value, description, "NotWiredUp");
 //        showPictureSuccessDialog(context);
       });
 //      return img;
@@ -209,8 +211,13 @@ class _NewPostPageState extends State<NewPostPage> {
                   autofocus: false,
                   autofillHints: ["dsfsd"],
                   onChanged: (val) {},
-                  onSubmitted: (des) {
+                  onSubmitted: (des) async {
                     print("SUB: " + des);
+                    setState(() {
+                      description = des;
+                    });
+                    await Requests.uploadNewPost(_image, description, "NotWiredUP");
+
                     postInfo.description = des;
                     FocusScope.of(context).unfocus();
                   },

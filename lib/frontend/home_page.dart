@@ -3,6 +3,7 @@ import 'package:EcoPost/frontend/challenge_page.dart';
 import 'package:EcoPost/frontend/new_post_page.dart';
 import 'package:EcoPost/models/ecopost_info.dart';
 import 'package:EcoPost/utilities/constants.dart';
+import 'package:EcoPost/utilities/requests.dart';
 import 'package:EcoPost/widgets/post_card.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -45,8 +46,10 @@ class MyHome extends StatelessWidget {
                       letterSpacing: 7,
                     ))),
                 leading: IconButton(
-                  onPressed: () {
+                  onPressed: () async {
                     //GO to profile page
+                    await Requests.getAllPosts();
+
                     Navigator.of(context).pushNamed('/ProfilePage');
                   },
                   icon: FaIcon(
@@ -63,7 +66,7 @@ class MyHome extends StatelessWidget {
                         IconButton(
                           icon: FaIcon(FontAwesomeIcons.leaf),
                           color: Colors.white,
-                          onPressed: () {
+                          onPressed: () async {
                             //TODO: Take to a point submission page
                             Navigator.of(context).pushNamed('/PointsPage');
 

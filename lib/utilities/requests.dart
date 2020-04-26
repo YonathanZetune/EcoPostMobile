@@ -72,6 +72,70 @@ class Requests {
 //  }
   }
 
+  static Future<File> uploadNewPost(
+      File fileImg, String description, String handles) async {
+    var path = "/send_post";
+//    var postInfo = Provider.of<EcoPostInfo>(EcoPostInfo);
+
+//    Future<String> networkImageToBase64(String imageUrl) async {
+//      http.Response response = await http.get(imageUrl);
+//      final bytes = response?.bodyBytes;
+//      return (bytes != null ? base64Encode(bytes) : null);
+//    }
+//    final imgBase64Str = await networkImageToBase64('https://picsum.photos/250?image=9');
+//    print(imgBase64Str);
+
+    print("HERERE");
+//    print("HERERE");
+
+//    final pth = await _localPath;
+//    File img = File.fromRawPath("assets/avatar2.jpg");
+//    print("file: " + img.path);
+
+//    final byteData = await rootBundle.load('assets/avatar2.jpg');
+//
+//    final file = File('${(await getTemporaryDirectory()).path}/$path');
+//    File img = await file.writeAsBytes(byteData.buffer
+//        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+//    print()
+    String base64Image = base64Encode(fileImg.readAsBytesSync());
+
+//    String base64Image = base64Encode(img.readAsBytesSync());
+    print("base");
+
+    String fileName = fileImg.path.split("/").last;
+
+    http.post("https://earth-hacks-eco-post.herokuapp.com" + path, body: {
+      "image": base64Image,
+      "info": description,
+      "name": "Dylan Theriot",
+      "location": "Times Square",
+      "lat_lng": "33.071153, -96.704665",
+      "timestamp": "January 12 2020",
+      "challenge": "My, hardcoded, handles",
+      "handle": handles,
+      "profile_picture": base64Image,
+//      "name": fileName,
+    }).then((res) {
+      print("STATUS: " + res.statusCode.toString());
+      print(base64Image);
+    }).catchError((err) {
+      print(err);
+    });
+    return fileImg;
+//  }
+  }
+
+  static Future<dynamic> getAllPosts() async {
+    var path =
+        "get_posts";
+    print("GETTING ALL POSTS... ");
+    var result = await getResult(path);
+    print(result.toString());
+//    var fireList = FireList.fromJson(result).fires;
+    return Text('');
+  }
+
   static Future<dynamic> postResult(String path) async {
     String requestUrl = 'https://earth-hacks-eco-post.herokuapp.com/';
     var request = await HttpClient().postUrl(Uri.parse(requestUrl + path));
