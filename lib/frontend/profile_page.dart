@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:EcoPost/utilities/constants.dart';
 import '../utilities/constants.dart';
 
 const kLargeTextStyle = TextStyle(
@@ -18,7 +18,7 @@ const kNumbersTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 const kNumbersDescTextStyle =
-TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, .5));
+    TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, .5));
 double kSpacing = 10;
 
 class ProfilePage extends StatelessWidget {
@@ -27,7 +27,11 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: AutoSizeText("Tom Holland", style: GoogleFonts.teko(fontWeight: FontWeight.bold,letterSpacing: 6, fontSize: 30),),
+        title: AutoSizeText(
+          "Tom Holland",
+          style: GoogleFonts.teko(
+              fontWeight: FontWeight.bold, letterSpacing: 6, fontSize: 30),
+        ),
         backgroundColor: Constants.themeGreen,
       ),
       body: SafeArea(
@@ -131,33 +135,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    Expanded(
-                      child: RawMaterialButton(
-                        onPressed: () {},
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 15,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(30, 65, 255, 1),
-                            border: Border.all(
-                              width: 2,
-                              color: Color.fromRGBO(30, 65, 255, 1),
-                            ),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Follow',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    FollowerBtn(),
                     SizedBox(
                       width: kSpacing,
                     ),
@@ -171,7 +149,7 @@ class ProfilePage extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(
                               width: 2,
-                              color: Color.fromRGBO(30, 65, 255, 1),
+                              color: Constants.themeGreen,
                             ),
                             borderRadius: BorderRadius.circular(3),
                           ),
@@ -179,7 +157,7 @@ class ProfilePage extends StatelessWidget {
                             child: Text(
                               'Message',
                               style: TextStyle(
-                                color: Color.fromRGBO(30, 65, 255, 1),
+                                color: Constants.themeGreen,
                                 fontSize: 18,
                               ),
                             ),
@@ -281,8 +259,8 @@ class SocialButton extends StatelessWidget {
 
   SocialButton(
       {@required this.icon,
-        @required this.iconColor,
-        @required this.containerColor});
+      @required this.iconColor,
+      @required this.containerColor});
 
   @override
   Widget build(BuildContext context) {
@@ -301,6 +279,57 @@ class SocialButton extends StatelessWidget {
         icon,
         color: iconColor,
         size: 20,
+      ),
+    );
+  }
+}
+
+class FollowerBtn extends StatefulWidget {
+  @override
+  _FollowerBtnState createState() => _FollowerBtnState();
+}
+
+class _FollowerBtnState extends State<FollowerBtn> {
+  bool following = true;
+  String word = "Following";
+  void onPressed() {
+    setState(() {
+      if (following) {
+        word = "Follow";
+      } else {
+        word = "Following";
+      }
+      following = !following;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: RawMaterialButton(
+        onPressed: onPressed,
+        fillColor: Constants.themeGreen,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            vertical: 15,
+          ),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 2,
+              color: Constants.themeGreen,
+            ),
+            borderRadius: BorderRadius.circular(3),
+          ),
+          child: Center(
+            child: Text(
+              word,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
