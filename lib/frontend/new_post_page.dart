@@ -232,11 +232,31 @@ class _NewPostPageState extends State<NewPostPage> {
                         setState(() {
                           description = des;
                         });
+                                                postInfo.description = des;
+
 //                        await Requests.uploadNewPost(
 //                            _image, description, "NotWiredUP");
                       },
                     ),
                   ),
+                   postInfo.description == ""
+                      ? Text('')
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+                                child: Text(
+                                  postInfo.description,
+                                  style: GoogleFonts.balooPaaji(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                 ],
               ),
 
