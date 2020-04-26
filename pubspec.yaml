@@ -45,6 +45,7 @@ dependencies:
   floating_ribbon: ^1.0.1
   skeleton_text: any
   toggle_switch: ^0.1.4
+  slimy_card: ^1.0.4
 
 
 

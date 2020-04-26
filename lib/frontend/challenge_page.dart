@@ -25,8 +25,8 @@ class ChallengePage extends StatelessWidget {
                   activeTextColor: Colors.white,
                   inactiveBgColor: Colors.grey,
                   inactiveTextColor: Colors.white,
-                  labels: ['  SENT  ', '  RECEIVED  '],
-                  icons: [FontAwesomeIcons.rocket, FontAwesomeIcons.solidEnvelope],
+                  labels: ['  RECEIVED  ', '  SENT  '],
+                  icons: [FontAwesomeIcons.envelopeOpen, FontAwesomeIcons.rocket],
                   onToggle: (index) {
                     print('switched to: $index');
                   }),
