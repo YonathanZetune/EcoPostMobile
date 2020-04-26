@@ -10,8 +10,30 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
+  List<CommentRow> comments = new List<CommentRow>();
+  String newComm = "";
+
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      CommentRow cr1 = new CommentRow(
+          image: 'neil.jpg',
+          comment: "Awesome work Julia, the stars are aligning in our favor!",
+          name: "Neil D.");
+      comments.add(cr1);
+      CommentRow cr2 = new CommentRow(
+          image: 'girl1.png',
+          comment:
+              "I love the poster, I will challenge my friends to do the same:)",
+          name: "Anna B.");
+      comments.add(cr2);
+      CommentRow cr3 = new CommentRow(
+          image: 'mel.png',
+          comment: "Would love to help out next time, send me a message!",
+          name: "Mel G.");
+      comments.add(cr3);
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
@@ -36,16 +58,12 @@ class _CommentsPageState extends State<CommentsPage> {
                       Divider(
                         color: Colors.grey,
                       ),
-                      ListView.builder(
+                      Container(
+                        child: ListView(
                           shrinkWrap: true,
-                          itemCount: 7,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              children: [
-                                CommentRow(),
-                              ],
-                            );
-                          }),
+                          children: comments,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -58,12 +76,25 @@ class _CommentsPageState extends State<CommentsPage> {
                 child: ListTile(
                   title: TextFormField(
                     // controller: _commentController,
-                    decoration:
-                        InputDecoration(labelText: 'Write a comment...'),
-                    // onFieldSubmitted: addComment,
+//                    decoration:
+//                        InputDecoration(labelText: 'Write a comment...'),
+                    onFieldSubmitted: (comm) {
+                      setState(() {
+                        newComm = comm;
+                      });
+                    },
                   ),
                   trailing: OutlineButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      print("PRESSED");
+//                      print(newComm);
+                      setState(() {
+                      CommentRow cr1 = new CommentRow(
+                          image: 'pfp.png', comment: "hi", name: "Dylan T.");
+                      comments.add(cr1);
+
+                      });
+                    },
                     borderSide: BorderSide.none,
                     child: Text("Post"),
                   ),
@@ -87,7 +118,11 @@ class TitleCommentRow extends StatelessWidget {
           children: [
             CircularProfileAvatar(
               '',
-              child: Image(image: AssetImage('assets/avatar1.JPG')),
+              child: Image(
+                  image: AssetImage(
+                    'assets/hill.png',
+                  ),
+                  fit: BoxFit.cover),
               radius: 25,
               borderColor: Constants.themeGreen,
               borderWidth: 4,
@@ -101,11 +136,13 @@ class TitleCommentRow extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 2),
-                      child: AutoSizeText("yonnieboy"),
+                      child: AutoSizeText("Julia Hill"),
                     ),
                     Container(),
                     Text(
-                        "My name is Yonathan Zetune, and I love using Flutter!"),
+                      "Amazing time working with California Recycling Inc! Can't wait til next month!",
+                      style: GoogleFonts.monda(),
+                    ),
                   ],
                 ),
               ),
@@ -118,6 +155,12 @@ class TitleCommentRow extends StatelessWidget {
 }
 
 class CommentRow extends StatelessWidget {
+  final String image;
+  final String comment;
+  final String name;
+
+  CommentRow({this.image, this.comment, this.name});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -127,7 +170,10 @@ class CommentRow extends StatelessWidget {
           children: [
             CircularProfileAvatar(
               '',
-              child: Image(image: AssetImage('assets/avatar1.JPG')),
+              child: Image.asset(
+                "assets/$image",
+                fit: BoxFit.cover,
+              ),
               radius: 25,
               borderColor: Constants.themeGreen,
               borderWidth: 4,
@@ -141,10 +187,13 @@ class CommentRow extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 2),
-                      child: AutoSizeText("yonnieboy"),
+                      child: AutoSizeText(name),
                     ),
                     Container(),
-                    Text("YOOOOO this is so cool I love it!"),
+                    Text(
+                      comment,
+                      style: GoogleFonts.monda(),
+                    ),
                     Row(
                       children: [
                         Text('Reply'),
