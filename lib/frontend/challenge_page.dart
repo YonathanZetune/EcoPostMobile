@@ -1,5 +1,6 @@
 
 
+import 'package:EcoPost/widgets/tags_received.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -13,6 +14,7 @@ class ChallengePage extends StatelessWidget {
 //        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(28.0),
@@ -29,6 +31,7 @@ class ChallengePage extends StatelessWidget {
                     print('switched to: $index');
                   }),
             ),
+            TagsReceived(),
           ],
         ),
 
