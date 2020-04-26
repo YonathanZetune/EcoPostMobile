@@ -61,9 +61,7 @@ class Requests {
 //    String base64Image = base64Encode(img.readAsBytesSync());
     print("base");
 
-    String fileName = fileImg.path
-        .split("/")
-        .last;
+    String fileName = fileImg.path.split("/").last;
 
     http.post("https://earth-hacks-eco-post.herokuapp.com" + path, body: {
       "image": base64Image,
@@ -83,7 +81,6 @@ class Requests {
     Image img = Image.memory(bytes);
     return img;
   }
-
 
   static Future<File> uploadNewPost(File fileImg, String description,
       String handles, String hashtag, String challenges) async {
@@ -118,9 +115,7 @@ class Requests {
     await uploadImageIMBB(fileImg, description, handles, hashtag, challenges);
     print("UPLOADING");
 
-
 //    String fileName = fileImg.path.split("/").last;
-
 
     return fileImg;
 //  }
@@ -131,9 +126,7 @@ class Requests {
     print("GETTING ALL POSTS... ");
     var result = await getResult(path);
     print("RESULT: " + result.toString());
-    var postList = PostList
-        .fromJson(result)
-        .posts;
+    var postList = PostList.fromJson(result).posts;
     postList.forEach((element) {
       print(element.description);
     });
@@ -146,10 +139,7 @@ class Requests {
     var request = await HttpClient().postUrl(Uri.parse(requestUrl + path));
     var response = await request.close();
     var contents =
-    await response
-        .transform(utf8.decoder)
-        .transform(json.decoder)
-        .single;
+        await response.transform(utf8.decoder).transform(json.decoder).single;
     return contents;
   }
 
@@ -158,10 +148,7 @@ class Requests {
     var request = await HttpClient().getUrl(Uri.parse(requestUrl + path));
     var response = await request.close();
     var contents =
-    await response
-        .transform(utf8.decoder)
-        .transform(json.decoder)
-        .single;
+        await response.transform(utf8.decoder).transform(json.decoder).single;
     return contents;
   }
 
@@ -177,26 +164,26 @@ class Requests {
       print("STATUS: " + res.statusCode.toString());
       print(json.decode(res.body)["data"]["url"]);
       imgLink = json.decode(res.body)["data"]["url"];
-      http.post("https://earth-hacks-eco-post.herokuapp.com" + "/send_post", body: {
-        "image": imgLink,
-        "info": description,
-        "name": "Dylan Theriot",
-        "location": "Times Square",
-        "lat_lng": "33.071153, -96.704665",
-        "timestamp": "January 12 2020",
-        "challenge": challenges,
-        "handle": handles,
-        "hashtag": hashtag,
-        "profile_picture": imgLink,
+      http.post("https://earth-hacks-eco-post.herokuapp.com" + "/send_post",
+          body: {
+            "image": imgLink == null ? "" : imgLink,
+            "info": description == null ? "" : description,
+            "name": "Dylan Theriot",
+            "location": "Times Square",
+            "lat_lng": "33.071153, -96.704665",
+            "timestamp": "1 minute ago",
+            "challenge": challenges == null ? "" : challenges,
+            "handle": handles == null ? "@dylantheriot" : handles,
+            "hashtag": hashtag == null ? "" : hashtag,
+            "profile_picture": imgLink == null ? "" : imgLink,
 //      "name": fileName,
-      }).then((res) {
+          }).then((res) {
         print("STATUS HEROKU: " + res.statusCode.toString());
 //      print(base64Image);
       }).catchError((err) {
-        print(err);
+        print("Error: " + err.toString());
       });
     });
     return imgLink;
   }
 }
-

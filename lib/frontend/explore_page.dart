@@ -20,6 +20,7 @@ class ExplorePage extends StatelessWidget {
                 return new Text('Error: ${projectSnap.error}');
               else
                 return ListView.builder(
+                  reverse: true,
                   itemCount: projectSnap.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
