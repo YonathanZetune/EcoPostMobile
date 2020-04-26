@@ -37,7 +37,7 @@ class LeaderboardPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Leaderboard",
-            style: GoogleFonts.balooPaaji(fontSize: 35, letterSpacing: 3)),
+            style: GoogleFonts.rokkitt(fontSize: 35, letterSpacing: 3)),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
