@@ -27,7 +27,7 @@ class MyProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: AutoSizeText("Tom Holland", style: GoogleFonts.teko(fontWeight: FontWeight.bold,letterSpacing: 6, fontSize: 30),),
+        title: AutoSizeText("@dylantheriot", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 25),),
         backgroundColor: Constants.themeGreen,
       ),
       body: SafeArea(
@@ -43,8 +43,7 @@ class MyProfilePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: NetworkImage(
-                            'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
+                        image: AssetImage('assets/pfp.png'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -54,18 +53,14 @@ class MyProfilePage extends StatelessWidget {
                   height: kSpacing,
                 ),
                 Text(
-                  'Tom Holland',
+                  'Dylan Theriot',
                   style: kLargeTextStyle,
-                ),
-                Text(
-                  '@tomholland2013',
-                  style: kTitleTextStyle,
                 ),
                 SizedBox(
                   height: kSpacing,
                 ),
                 Text(
-                  'Spider-Man',
+                  'Huge fan of turtles!',
                   style: kTitleTextStyle,
                 ),
                 SizedBox(
@@ -103,7 +98,7 @@ class MyProfilePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     PostFollower(
-                      number: 9001,
+                      number: 156,
                       title: 'Points',
                     ),
                     Container(
@@ -112,7 +107,7 @@ class MyProfilePage extends StatelessWidget {
                           color: Colors.black,
                         )),
                     PostFollower(
-                      number: 420,
+                      number: 32,
                       title: 'Followers',
                     ),
                     Container(
@@ -121,7 +116,7 @@ class MyProfilePage extends StatelessWidget {
                           color: Colors.black,
                         )),
                     PostFollower(
-                      number: 1337,
+                      number: 47,
                       title: 'Following',
                     ),
                   ],
@@ -139,10 +134,10 @@ class MyProfilePage extends StatelessWidget {
                             vertical: 15,
                           ),
                           decoration: BoxDecoration(
-                            color: Color.fromRGBO(30, 65, 255, 1),
+                            color: Constants.themeGreen,
                             border: Border.all(
                               width: 2,
-                              color: Color.fromRGBO(30, 65, 255, 1),
+                              color: Constants.themeGreen,
                             ),
                             borderRadius: BorderRadius.circular(3),
                           ),
@@ -171,7 +166,7 @@ class MyProfilePage extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(
                               width: 2,
-                              color: Color.fromRGBO(30, 65, 255, 1),
+                              color: Constants.themeGreen,
                             ),
                             borderRadius: BorderRadius.circular(3),
                           ),
@@ -179,7 +174,7 @@ class MyProfilePage extends StatelessWidget {
                             child: Text(
                               'Settings',
                               style: TextStyle(
-                                color: Color.fromRGBO(30, 65, 255, 1),
+                                color: Constants.themeGreen,
                                 fontSize: 18,
                               ),
                             ),
@@ -197,26 +192,7 @@ class MyProfilePage extends StatelessWidget {
                   shrinkWrap: true,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  children: <Widget>[
-                    GalleryImage(
-                      imagePath: 'images/1.jpg',
-                    ),
-                    GalleryImage(
-                      imagePath: 'images/2.jpg',
-                    ),
-                    GalleryImage(
-                      imagePath: 'images/3.jpg',
-                    ),
-                    GalleryImage(
-                      imagePath: 'images/4.jpg',
-                    ),
-                    GalleryImage(
-                      imagePath: 'images/5.jpg',
-                    ),
-                    GalleryImage(
-                      imagePath: 'images/6.jpg',
-                    ),
-                  ],
+                  children: images.map((path) => new GalleryImage(imagePath: path.toString())).toList(),
                 ),
               ],
             ),
@@ -226,6 +202,8 @@ class MyProfilePage extends StatelessWidget {
     );
   }
 }
+
+var images = ['assets/1.jpg', 'assets/2.jpg', 'assets/3.JPG', 'assets/4.JPG', 'assets/5.jpg', 'assets/6.JPG', 'assets/7.jpg'];
 
 class GalleryImage extends StatelessWidget {
   final String imagePath;
@@ -238,8 +216,7 @@ class GalleryImage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         image: DecorationImage(
-          image: NetworkImage(
-              'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
+          image: new AssetImage(imagePath),
           fit: BoxFit.cover,
         ),
       ),
