@@ -13,13 +13,15 @@ class EcoPostInfo extends ChangeNotifier {
 
   static File _selectedImg = File(null);
 
-
+  static String _tagged = "";
 
 
   static bool _shouldShowBack = false;
   static int _activeIndex = 0;
 
   static Key _selctedCardKey = Key(null);
+
+  static String _challenge = "";
 
 //  File get image => _image;
 
@@ -31,6 +33,10 @@ class EcoPostInfo extends ChangeNotifier {
   String get description => _description;
 
   int get activeIndex => _activeIndex;
+
+  String get tagged => _tagged;
+
+  String get challenge => _challenge;
 
 //
 //  set image(File img) {
@@ -58,6 +64,15 @@ class EcoPostInfo extends ChangeNotifier {
     notifyListeners();
   }
 
+  set tagged(String needIt) {
+    _tagged = needIt;
+    notifyListeners();
+  }
+
+  set challenge(String needIt) {
+    _challenge = needIt;
+    notifyListeners();
+  }
 //  File get image => _image;
 
   Key get selctedCard => _selctedCardKey;
