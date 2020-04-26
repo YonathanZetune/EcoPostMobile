@@ -48,7 +48,7 @@ class MyHome extends StatelessWidget {
                 leading: IconButton(
                   onPressed: () async {
                     //GO to profile page
-                    await Requests.getAllPosts();
+//                    await Requests.getAllPosts();
 
                     Navigator.of(context).pushNamed('/ProfilePage');
                   },
