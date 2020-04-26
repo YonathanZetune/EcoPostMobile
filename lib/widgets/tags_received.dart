@@ -95,7 +95,7 @@ class _TagReceivedCardState extends State<TagReceivedCard> {
                 padding: const EdgeInsets.all(8.0),
                 child: CircularProfileAvatar(
                   '',
-                  child: Image(image: AssetImage('assets/avatar2.jpg')),
+                  child: Image(fit: BoxFit.fitHeight, width: 474, height: 375,image: AssetImage('assets/neil1.jpg')),
                   radius: 50,
                   borderColor: Constants.themeGreen,
                   borderWidth: 4,

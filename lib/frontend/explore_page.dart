@@ -31,6 +31,8 @@ class ExplorePage extends StatelessWidget {
                           description: projectSnap.data[index].description,
                           location: projectSnap.data[index].location,
                           likes: projectSnap.data[index].likes,
+                          profPic: projectSnap.data[index].profPic,
+
 
 
                           lat: projectSnap.data[index].lat,

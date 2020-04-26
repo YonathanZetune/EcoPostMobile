@@ -121,7 +121,7 @@ class PostCard extends StatelessWidget {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
-                                  image: NetworkImage(image),
+                                  image: NetworkImage(profPic),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -148,6 +148,7 @@ class PostCard extends StatelessWidget {
                           color: Colors.grey,
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(name),
                             AutoSizeText(
@@ -182,14 +183,17 @@ class PostCard extends StatelessWidget {
                           children: [
                             Stack(children: [
                               Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(7.0),
                                 child: Badge(
                                   position: BadgePosition.bottomRight(),
                                   badgeColor: Constants.themeLightGreen,
-                                  badgeContent: AutoSizeText(
-                                    likes.toString(),
-                                    style: TextStyle(
-                                        fontSize: 10, color: Colors.white),
+                                  badgeContent: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: AutoSizeText(
+                                      likes.toString(),
+                                      style: TextStyle(
+                                          fontSize: 8, color: Colors.white),
+                                    ),
                                   ),
                                   child: FloatingActionButton(
                                     backgroundColor: Colors.white,
