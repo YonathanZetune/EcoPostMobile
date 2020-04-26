@@ -5,6 +5,7 @@ import 'package:EcoPost/frontend/login_page.dart';
 import 'package:EcoPost/frontend/point_redeem_page.dart';
 import 'package:EcoPost/frontend/shop_page.dart';
 import 'package:EcoPost/utilities/constants.dart';
+import 'package:EcoPost/frontend/my_profile_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
 //            create: (context) => FormInfo(), child: ReportPage()),
         '/HomePage': (context) => new MyHome(),
 //        '/AroundMeTab': (context) => new AroundMe(),
-        '/ProfilePage': (context) => new ProfilePage(),
+        '/ProfilePage': (context) => new MyProfilePage(),
         '/LeaderBoardPage': (context) => new LeaderboardPage(),
         '/PointsPage': (context) => new ShopPage(),
 
