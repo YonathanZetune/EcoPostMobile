@@ -98,7 +98,7 @@ class MyProfilePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     PostFollower(
-                      number: 156,
+                      number: 324,
                       title: 'Points',
                     ),
                     Container(
@@ -146,7 +146,6 @@ class MyProfilePage extends StatelessWidget {
                               'Edit Profile',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
                               ),
                             ),
                           ),

@@ -27,7 +27,7 @@ class ShopPage extends StatelessWidget {
 
                   },
                 ),
-                AutoSizeText("35+")
+                AutoSizeText("300+")
               ],
             ),
           )

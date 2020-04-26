@@ -73,7 +73,7 @@ class MyHome extends StatelessWidget {
 
                           },
                         ),
-                        AutoSizeText("35+")
+                        AutoSizeText("300+")
                       ],
                     ),
                   )
