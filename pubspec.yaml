@@ -44,6 +44,7 @@ dependencies:
   flip: ^1.0.0
   floating_ribbon: ^1.0.1
   skeleton_text: any
+  toggle_switch: ^0.1.4
 
 
 

@@ -1,4 +1,5 @@
 import 'package:EcoPost/frontend/around_me_page.dart';
+import 'package:EcoPost/frontend/challenge_page.dart';
 import 'package:EcoPost/frontend/new_post_page.dart';
 import 'package:EcoPost/models/ecopost_info.dart';
 import 'package:EcoPost/utilities/constants.dart';
@@ -20,6 +21,8 @@ class MyHome extends StatelessWidget {
     tabs = new List<TabItem>();
     tabs.add(TabItem(title: "Post", icon: Icons.add_a_photo));
     tabs.add(TabItem(title: "Explore", icon: Icons.explore));
+    tabs.add(TabItem(title: "Tags", icon: FontAwesomeIcons.tags));
+
     tabs.add(TabItem(title: "Around Me", icon: Icons.map));
 //    TabController tc = new TabController(length: 3, vsync: TickerProvider);
 
@@ -30,7 +33,7 @@ class MyHome extends StatelessWidget {
       child: Container(
         child: DefaultTabController(
           initialIndex: 1,
-          length: 3,
+          length: 4,
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Constants.themeGreen,
@@ -103,6 +106,7 @@ class MyHome extends StatelessWidget {
                 style: TabStyle.reactCircle,
               ),
               body: TabBarView(
+
                 physics: NeverScrollableScrollPhysics(),
 //                dragStartBehavior: DragStartBehavior.start,
                 children: [
@@ -121,7 +125,9 @@ class MyHome extends StatelessWidget {
                           ],
                         );
                       }),
+                  ChallengePage(),
                   AroundMe(),
+
                 ].map((i) => Center(child: i)).toList(growable: false),
               )),
         ),
