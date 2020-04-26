@@ -97,7 +97,7 @@ class SmallProductTiles extends StatelessWidget {
                   child: SmallProductTile(
                     name: 'Gift Card',
                     price: 149,
-                    asset: 'assets/giftcard.jpg',
+                    asset: 'assets/giftcard.png',
                     padding: const EdgeInsets.only(right: 14.0),
                   ),
                 ),

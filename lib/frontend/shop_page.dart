@@ -1,4 +1,5 @@
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:EcoPost/widgets/shopwidgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,6 +13,25 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: FaIcon(FontAwesomeIcons.leaf),
+                  color: Colors.white,
+                  onPressed: () {
+                    //TODO: Take to a point submission page
+                    Navigator.of(context).pushNamed('/PointsPage');
+
+                  },
+                ),
+                AutoSizeText("35+")
+              ],
+            ),
+          )
+        ],
         title: Text("STORE", style: titleStyle,),
       ),
           body: SingleChildScrollView(

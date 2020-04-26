@@ -3,6 +3,7 @@ import 'package:EcoPost/frontend/home_page.dart';
 import 'package:EcoPost/frontend/leaderboard_page.dart';
 import 'package:EcoPost/frontend/login_page.dart';
 import 'package:EcoPost/frontend/point_redeem_page.dart';
+import 'package:EcoPost/frontend/shop_page.dart';
 import 'package:EcoPost/utilities/constants.dart';
 
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
 //        '/AroundMeTab': (context) => new AroundMe(),
         '/ProfilePage': (context) => new ProfilePage(),
         '/LeaderBoardPage': (context) => new LeaderboardPage(),
-        '/PointsPage': (context) => new PointRedeemPage(),
+        '/PointsPage': (context) => new ShopPage(),
 
 
       },
