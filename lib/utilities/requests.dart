@@ -169,7 +169,7 @@ class Requests {
             "image": imgLink == null ? "" : imgLink,
             "info": description == null ? "" : description,
             "name": "Dylan Theriot",
-            "location": "Times Square",
+            "location": "Dallas, TX",
             "lat_lng": "33.071153, -96.704665",
             "timestamp": "1 minute ago",
             "challenge": challenges == null ? "" : challenges,
