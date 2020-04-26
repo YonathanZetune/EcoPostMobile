@@ -2,12 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 
 //import 'package:dio/dio.dart';
+import 'package:EcoPost/models/ecopost_info.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 //import 'package:http/http.dart' as http;
 
 class Requests {
@@ -24,8 +27,9 @@ class Requests {
     return directory.path;
   }
 
-  static Future uploadImage(File fileImg) async {
+  static Future<File> uploadImage(File fileImg) async {
     var path = "/upload_image";
+//    var postInfo = Provider.of<EcoPostInfo>(EcoPostInfo);
 
 //    Future<String> networkImageToBase64(String imageUrl) async {
 //      http.Response response = await http.get(imageUrl);
@@ -64,7 +68,7 @@ class Requests {
     }).catchError((err) {
       print(err);
     });
-//    return fireList;
+    return fileImg;
 //  }
   }
 

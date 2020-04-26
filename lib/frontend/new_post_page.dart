@@ -15,31 +15,81 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class NewPostPage extends StatelessWidget {
-  Future<void> getImage(BuildContext context, bool fromCamera) async {
+class NewPostPage extends StatefulWidget {
+  @override
+  _NewPostPageState createState() => _NewPostPageState();
+}
+
+class _NewPostPageState extends State<NewPostPage> {
+  File _image;
+
+  Future getImage(BuildContext context, bool fromCamera) async {
     print("PICKING");
     File image;
     if (fromCamera)
       await ImagePicker.pickImage(source: ImageSource.camera)
           .then((value) async {
+        setState(() {
+          _image = value;
+        });
 //        var info = Provider.of<EcoPostInfo>(context);
 //        info.selectedImg = value;
         await Requests.uploadImage(value);
+//        showPictureSuccessDialog(context);
       });
-    else
+    else {
       await ImagePicker.pickImage(source: ImageSource.gallery)
           .then((value) async {
+        setState(() {
+          _image = value;
+        });
 //        var info = Provider.of<EcoPostInfo>(context);
 //        info.selectedImg = value;
+//        setImageOnScreen(value, context);
         await Requests.uploadImage(value);
+//        showPictureSuccessDialog(context);
       });
+//      return img;
+
+    }
     //    var formInfo = Provider.of<FormInfo>(context, listen: false);
 //    showAlertDialog(context, image);
 
 //    return image;
   }
 
-  showPictureSourceDialog(BuildContext context) {
+  Future<File> showPictureSuccessDialog(BuildContext context) async {
+    // set up the buttons
+
+    Widget continueButton = FlatButton(
+      child: Text("Done"),
+      onPressed: () async {
+        Navigator.of(context).pop();
+
+//        return await getImage(context, true);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Image Selected"),
+      content: Text(
+          "Image is ready to be uploaded. Fill out the description below, add challengers and hit post!"),
+      actions: [
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+    return File(null);
+  }
+
+  Future<File> showPictureSourceDialog(BuildContext context) async {
     // set up the buttons
     Widget cancelButton = FlatButton(
       child: Text("Cancel"),
@@ -50,22 +100,24 @@ class NewPostPage extends StatelessWidget {
     Widget continueButton = FlatButton(
       child: Text("From Camera"),
       onPressed: () async {
-        getImage(context, true);
         Navigator.of(context).pop();
+
+        return await getImage(context, true);
       },
     );
     Widget galleryButton = FlatButton(
       child: Text("From Photos"),
       onPressed: () async {
-        getImage(context, false);
         Navigator.of(context).pop();
+
+        return await getImage(context, false);
       },
     );
 
     AlertDialog alert = AlertDialog(
       title: Text("How would you like to take a picture"),
       content:
-          Text("Image is ready to be uploaded. Would you like to proceed?"),
+          Text("Image is ready to be uploaded. How would you like to proceed?"),
       actions: [
         cancelButton,
         continueButton,
@@ -80,100 +132,90 @@ class NewPostPage extends StatelessWidget {
         return alert;
       },
     );
-//    AlertDialog alertSuccess = AlertDialog(
-//      title: Text("Form was received and updated databse!"),
-//      content:
-//      Text("You report is not available on the List tab"),
-//      actions: [
-//        cancelButton,
-//
-//      ],
-//    );
-//
-//    // show the dialog
-//    showDialogSuc(
-//      context: context,
-//      builder: (BuildContext context) {
-//        return alertSuccess;
-//      },
-//    );
+    return File(null);
   }
 
   @override
   Widget build(BuildContext context) {
-//    void _doSomething() async {
-//      Timer(Duration(seconds: 3), () {
-//        print("LOADD");
-//        _btnController.success();
-//      });
-//    }
-
     TextEditingController txtCon = new TextEditingController();
     var postInfo = Provider.of<EcoPostInfo>(context);
-    return SafeArea(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Card(
-                color: Constants.themeLightGreen,
-                elevation: 24,
-                child: FlatButton(
-                  onPressed: () async {
-                    showPictureSourceDialog(context);
+    return SingleChildScrollView(
 
-                    //Go to Leaderboard page
+      child: SafeArea(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Card(
+                  color: Constants.themeLightGreen,
+                  elevation: 24,
+                  child: FlatButton(
+                    onPressed: () async {
+                      File img = await showPictureSourceDialog(context);
+                      showPictureSourceDialog(context);
+
+//                    setImageOnScreen(img);
+
+                      //Go to Leaderboard page
 //                  Navigator.of(context).pushNamed('/LeaderBoardPage');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(22.0),
-                        child: FaIcon(
-                          FontAwesomeIcons.upload,
-                          color: Colors.white,
-                          size: 26,
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(22.0),
+                          child: FaIcon(
+                            FontAwesomeIcons.upload,
+                            color: Colors.white,
+                            size: 26,
+                          ),
                         ),
-                      ),
 
-                      AutoSizeText(
-                        "Select Image",
-                        style: GoogleFonts.balooBhai(
-                            fontSize: 25, color: Colors.white),
-                      ),
+                        AutoSizeText(
+                          "Select Image",
+                          style: GoogleFonts.balooBhai(
+                              fontSize: 25, color: Colors.white),
+                        ),
 //                    FaIcon(
 //                      FontAwesomeIcons.arrowAltCircleRight,
 //                      color: Colors.white,
 //                      size: 25,
 //                    )
-                    ],
-                  ),
+                      ],
+                    ),
 //                    color: Constants.themeLightGreen,
-                  splashColor: Constants.themeGreen,
+                    splashColor: Constants.themeGreen,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 100,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  focusNode: FocusNode(skipTraversal: true),
-                  controller: txtCon,
-                  decoration: InputDecoration(
-                    labelText: "Enter a descirption!",
-                  ),
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  autofillHints: ["dsfsd"],
-                  onChanged: (val) {},
-                  onSubmitted: (des) {
-                    print("SUB: " + des);
-                    postInfo.description = des;
-                    FocusScope.of(context).unfocus();
-                  },
+              _image == null
+                  ? Text('No image selected.')
+                  : SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                  height: 300,
+
+                  child: Image.file(_image)),
+//            Text("Select an image."),
+              SizedBox(
+                height: 100,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    focusNode: FocusNode(skipTraversal: true),
+                    controller: txtCon,
+                    decoration: InputDecoration(
+                      labelText: "Enter a description!",
+                    ),
+                    keyboardType: TextInputType.text,
+                    autofocus: false,
+                    autofillHints: ["dsfsd"],
+                    onChanged: (val) {},
+                    onSubmitted: (des) {
+                      print("SUB: " + des);
+                      postInfo.description = des;
+                      FocusScope.of(context).unfocus();
+                    },
 //                onEditingComplete: (){
 //                  print("DONE");
 ////                  txtCon.
@@ -182,65 +224,65 @@ class NewPostPage extends StatelessWidget {
 //
 //
 //                },
+                  ),
                 ),
               ),
-            ),
-            postInfo.description == ""
-                ? Text('')
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      postInfo.description,
-                      style: GoogleFonts.balooPaaji(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Card(
-                color: Constants.themeLightGreen,
-                elevation: 24,
-                child: FlatButton(
-                  onPressed: () async {
-//                    showPictureSourceDialog(context);
-                    print(postInfo.selectedImg.toString());
-//                    await Requests.uploadImage(postInfo.selectedImg);
-
-                    //Go to Leaderboard page
-//                  Navigator.of(context).pushNamed('/LeaderBoardPage');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(22.0),
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                          size: 26,
+              postInfo.description == ""
+                  ? Text('')
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        postInfo.description,
+                        style: GoogleFonts.balooPaaji(
+                          fontSize: 16,
                         ),
                       ),
+                    ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Card(
+                  color: Constants.themeLightGreen,
+                  elevation: 24,
+                  child: FlatButton(
+                    onPressed: () async {
+//                    showPictureSourceDialog(context);
+                      print(postInfo.selectedImg.toString());
+//                    await Requests.uploadImage(postInfo.selectedImg);
 
-                      AutoSizeText(
-                        "Upload Post",
-                        style: GoogleFonts.balooBhai(
-                            fontSize: 25, color: Colors.white),
-                      ),
+                      //Go to Leaderboard page
+//                  Navigator.of(context).pushNamed('/LeaderBoardPage');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(22.0),
+                          child: Icon(
+                            Icons.send,
+                            color: Colors.white,
+                            size: 26,
+                          ),
+                        ),
+
+                        AutoSizeText(
+                          "Upload Post",
+                          style: GoogleFonts.balooBhai(
+                              fontSize: 25, color: Colors.white),
+                        ),
 //                    FaIcon(
 //                      FontAwesomeIcons.arrowAltCircleRight,
 //                      color: Colors.white,
 //                      size: 25,
 //                    )
-
-                    ],
-                  ),
+                      ],
+                    ),
 //                    color: Constants.themeLightGreen,
-                  splashColor: Constants.themeGreen,
+                    splashColor: Constants.themeGreen,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
