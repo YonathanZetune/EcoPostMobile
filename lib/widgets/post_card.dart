@@ -222,7 +222,12 @@ class PostCard extends StatelessWidget {
                               heroTag: FontAwesomeIcons.random.toString() +
                                   DateTime.now().toString(),
                               mini: true,
-                              onPressed: () {},
+                              onPressed: () {
+
+                                //Go to comment page
+                                Navigator.of(context).pushNamed("/CommentsPage");
+
+                              },
                               child: FaIcon(
                                 FontAwesomeIcons.comment,
                                 size: 18,

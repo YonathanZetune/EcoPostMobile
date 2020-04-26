@@ -1,4 +1,5 @@
 import 'package:EcoPost/frontend/around_me_page.dart';
+import 'package:EcoPost/frontend/comments_page.dart';
 import 'package:EcoPost/frontend/home_page.dart';
 import 'package:EcoPost/frontend/leaderboard_page.dart';
 import 'package:EcoPost/frontend/login_page.dart';
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
         '/ProfilePage': (context) => new MyProfilePage(),
         '/LeaderBoardPage': (context) => new LeaderboardPage(),
         '/PointsPage': (context) => new ShopPage(),
+        '/CommentsPage': (context) => new CommentsPage(),
+
 
 
       },

@@ -86,7 +86,7 @@ class Requests {
 
 
   static Future<File> uploadNewPost(File fileImg, String description,
-      String handles) async {
+      String handles, String hashtag, String challenges) async {
     var path = "/send_post";
 //    var postInfo = Provider.of<EcoPostInfo>(EcoPostInfo);
 
@@ -115,7 +115,7 @@ class Requests {
 
 //    String base64Image = base64Encode(img.readAsBytesSync());
 //    print("base");
-    await uploadImageIMBB(fileImg, description, handles);
+    await uploadImageIMBB(fileImg, description, handles, hashtag, challenges);
     print("UPLOADING");
 
 
@@ -166,7 +166,7 @@ class Requests {
   }
 
   static Future<String> uploadImageIMBB(File img, String description,
-      String handles) async {
+      String handles, String hashtag, String challenges) async {
     String imgBase64 = base64Encode(img.readAsBytesSync());
     String requestUrl = 'https://api.imgbb.com/1/upload';
     String imgLink = "";
@@ -184,8 +184,9 @@ class Requests {
         "location": "Times Square",
         "lat_lng": "33.071153, -96.704665",
         "timestamp": "January 12 2020",
-        "challenge": "My, hardcoded, handles",
+        "challenge": challenges,
         "handle": handles,
+        "hashtag": hashtag,
         "profile_picture": imgLink,
 //      "name": fileName,
       }).then((res) {

@@ -27,6 +27,7 @@ class _NewPostPageState extends State<NewPostPage> {
   String tagged;
   String challenge;
 
+
   Future getImage(BuildContext context, bool fromCamera) async {
     print("PICKING");
     File image;
@@ -155,7 +156,7 @@ class _NewPostPageState extends State<NewPostPage> {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('Yonathan Zetune',
+                    child: Text('Dylan Theriot',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
@@ -231,8 +232,8 @@ class _NewPostPageState extends State<NewPostPage> {
                         setState(() {
                           description = des;
                         });
-                        await Requests.uploadNewPost(
-                            _image, description, "NotWiredUP");
+//                        await Requests.uploadNewPost(
+//                            _image, description, "NotWiredUP");
                       },
                     ),
                   ),
@@ -258,8 +259,7 @@ class _NewPostPageState extends State<NewPostPage> {
                         setState(() {
                           challenge = yeet;
                         });
-                        await Requests.uploadNewPost(
-                            _image, description, "NotWiredUP");
+
                         postInfo.challenge = yeet;
                         // FocusScope.of(context).unfocus();
                       },
@@ -304,8 +304,8 @@ class _NewPostPageState extends State<NewPostPage> {
                         setState(() {
                           tagged = yeet;
                         });
-                        await Requests.uploadNewPost(
-                            _image, description, "NotWiredUP");
+//                        await Requests.uploadNewPost(
+//                            _image, description, "NotWiredUP");
                         postInfo.tagged = yeet;
                         // FocusScope.of(context).unfocus();
                       },
@@ -338,6 +338,8 @@ class _NewPostPageState extends State<NewPostPage> {
                   elevation: 24,
                   child: FlatButton(
                     onPressed: () async {
+                      await Requests.uploadNewPost(
+                          _image, description, handles, challenge, tagged);
 //                    showPictureSourceDialog(context);
                       print(postInfo.selectedImg.toString());
 //                    await Requests.uploadImage(postInfo.selectedImg);
