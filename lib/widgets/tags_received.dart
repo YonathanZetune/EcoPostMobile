@@ -67,7 +67,7 @@ class _TagReceivedCardState extends State<TagReceivedCard> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: AutoSizeText(
-                    "Joe terra-tagged you!",
+                    "Neil terra-tagged you!",
                     style: GoogleFonts.monda(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),

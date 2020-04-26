@@ -22,10 +22,10 @@ class NewPostPage extends StatefulWidget {
 
 class _NewPostPageState extends State<NewPostPage> {
   File _image;
-  String description;
-  String handles;
-  String tagged;
-  String challenge;
+  String _description;
+  String _handles;
+  String _tagged;
+  String _challenge;
 
 
   Future getImage(BuildContext context, bool fromCamera) async {
@@ -230,7 +230,7 @@ class _NewPostPageState extends State<NewPostPage> {
                       onSubmitted: (des) async {
                         print("SUB: " + des);
                         setState(() {
-                          description = des;
+                          _description = des;
                         });
 //                        await Requests.uploadNewPost(
 //                            _image, description, "NotWiredUP");
@@ -257,7 +257,7 @@ class _NewPostPageState extends State<NewPostPage> {
                       onSubmitted: (yeet) async {
                         print("SUB: " + yeet);
                         setState(() {
-                          challenge = yeet;
+                          _challenge = yeet;
                         });
 
                         postInfo.challenge = yeet;
@@ -302,7 +302,7 @@ class _NewPostPageState extends State<NewPostPage> {
                       onSubmitted: (yeet) async {
                         print("SUB: " + yeet);
                         setState(() {
-                          tagged = yeet;
+                          _tagged = yeet;
                         });
 //                        await Requests.uploadNewPost(
 //                            _image, description, "NotWiredUP");
@@ -338,8 +338,9 @@ class _NewPostPageState extends State<NewPostPage> {
                   elevation: 24,
                   child: FlatButton(
                     onPressed: () async {
+                      print("UPLOAD");
                       await Requests.uploadNewPost(
-                          _image, description, handles, challenge, tagged);
+                          _image, _description, _handles, _challenge, _tagged);
 //                    showPictureSourceDialog(context);
                       print(postInfo.selectedImg.toString());
 //                    await Requests.uploadImage(postInfo.selectedImg);
