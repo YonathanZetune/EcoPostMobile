@@ -34,9 +34,9 @@ class MyHome extends StatelessWidget {
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Constants.themeGreen,
-                title: AutoSizeText('EcoPost',
+                title: AutoSizeText('terra',
                     minFontSize: 48,
-                    style: GoogleFonts.grandHotel(
+                    style: GoogleFonts.poiretOne(
                         textStyle: TextStyle(
                       color: Colors.white,
                       letterSpacing: 7,

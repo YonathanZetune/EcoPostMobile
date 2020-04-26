@@ -42,6 +42,9 @@ dependencies:
   animated_text_kit: ^2.0.0
   confetti: ^0.4.0
   flip: ^1.0.0
+  floating_ribbon: ^1.0.1
+  skeleton_text: any
+
 
 
 

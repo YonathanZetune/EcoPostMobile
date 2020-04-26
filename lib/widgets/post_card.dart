@@ -3,12 +3,17 @@ import 'package:EcoPost/utilities/constants.dart';
 import 'package:EcoPost/utilities/requests.dart';
 import 'package:EcoPost/widgets/back_card_post.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:badges/badges.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flip/flip.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:floating_ribbon/floating_ribbon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:skeleton_text/skeleton_text.dart';
+
 //
 //class FrontCard extends StatelessWidget {
 //  @override
@@ -62,15 +67,40 @@ class PostCard extends StatelessWidget {
               padding: const EdgeInsets.all(7.0),
               child: ListTile(
                 title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    AutoSizeText("#feeling-clean", textAlign: TextAlign.start, style: GoogleFonts.abel(fontStyle: FontStyle.italic, color: Colors.blue, fontSize: 20),),
                     Row(
                       children: [
-                        CircularProfileAvatar(
-                          '',
-                          child: Image(image: AssetImage('assets/avatar1.JPG')),
-                          radius: 25,
-                          borderColor: Constants.themeGreen,
-                          borderWidth: 4,
+                        FloatingRibbon(
+                          height: 120,
+                          width: 75,
+                          childHeight: 70,
+                          childWidth: 70,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircularProfileAvatar(
+                              '',
+                              child: Image(
+                                  image: AssetImage('assets/avatar1.JPG')),
+//                              radius: 20,
+                              borderColor: Constants.themeGreen,
+                              borderWidth: 4,
+                            ),
+                          ),
+//                  childDecoration: BoxDecoration(color: Colors.grey),
+                          ribbon: SkeletonAnimation(
+                            child: Center(
+                              child: AutoSizeText(
+                                'popular',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          shadowHeight: 5,
                         ),
                         VerticalDivider(
                           indent: 10,
@@ -81,6 +111,7 @@ class PostCard extends StatelessWidget {
                         AutoSizeText("Yonathan Zetune")
                       ],
                     ),
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ClipRRect(
@@ -90,33 +121,93 @@ class PostCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    AutoSizeText(
-                      "Awesome time cleaning Spring Creek!",
-                      wrapWords: true,
-                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        FloatingActionButton(
-                          heroTag: FontAwesomeIcons.random.toString() +
-                              DateTime.now().toString(),
-                          mini: true,
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.thumb_up,
-                            size: 18,
-                          ),
+                        Row(
+                          children: [
+                            Stack(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Badge(
+                                  position: BadgePosition.bottomRight(),
+                                  badgeColor: Constants.themeLightGreen,
+                                  badgeContent: AutoSizeText("32", style: TextStyle(fontSize: 16,color: Colors.white),),
+                                  child: FloatingActionButton(
+                                    backgroundColor: Colors.white,
+                                    elevation: 10,
+                                    heroTag: FontAwesomeIcons.random.toString() +
+                                        DateTime.now().toString(),
+                                    mini: true,
+                                    onPressed: () {},
+                                    child: FaIcon(
+                                      FontAwesomeIcons.leaf,
+                                      size: 16,
+                                      color: Constants.themeLightGreen,
+                                    ),
+                                  ),
+                                ),
+                              ),
+//                              Positioned(
+//                                bottom: 0,
+//                                  right: ,
+//                                  child: AutoSizeText("32", style: GoogleFonts.balooTamma(color: Constants.themeLightGreen),)),
+                            ]),
+                            FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              elevation: 10,
+                              heroTag: FontAwesomeIcons.random.toString() +
+                                  DateTime.now().toString(),
+                              mini: true,
+                              onPressed: () {},
+                              child: FaIcon(
+                                FontAwesomeIcons.comment,
+                                size: 18,
+                                color: Constants.themeLightGreen,
+                              ),
+                            ),
+                            FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              elevation: 10,
+                              heroTag: FontAwesomeIcons.random.toString() +
+                                  DateTime.now().toString(),
+                              mini: true,
+                              onPressed: () {},
+                              child: FaIcon(
+                                FontAwesomeIcons.trophy,
+                                size: 18,
+                                color: Constants.themeLightGreen,
+                              ),
+                            ),
+                          ],
                         ),
-                        AutoSizeText("32")
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            AutoSizeText(
+                              "4 hours ago",
+                              style: GoogleFonts.zillaSlab(),
+                            )
+                          ],
+                        ),
                       ],
-                    )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AutoSizeText(
+                        "Awesome time cleaning Spring Creek!",
+                        style: GoogleFonts.rokkitt(fontSize: 20),
+                        wrapWords: true,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
         ),
-        secondChild: BackCard(lat: 33.071153, long: -96.704665), // : FrontCard(),
+        secondChild:
+            BackCard(lat: 33.071153, long: -96.704665), // : FrontCard(),
       ),
     );
   }
