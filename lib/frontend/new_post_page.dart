@@ -139,83 +139,81 @@ class _NewPostPageState extends State<NewPostPage> {
   Widget build(BuildContext context) {
     TextEditingController txtCon = new TextEditingController();
     var postInfo = Provider.of<EcoPostInfo>(context);
-    return SingleChildScrollView(
-
-      child: SafeArea(
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Card(
-                  color: Constants.themeLightGreen,
-                  elevation: 24,
-                  child: FlatButton(
-                    onPressed: () async {
-                      File img = await showPictureSourceDialog(context);
-                      showPictureSourceDialog(context);
+    return SafeArea(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Card(
+                color: Constants.themeLightGreen,
+                elevation: 24,
+                child: FlatButton(
+                  onPressed: () async {
+                    File img = await showPictureSourceDialog(context);
+                    showPictureSourceDialog(context);
 
 //                    setImageOnScreen(img);
 
-                      //Go to Leaderboard page
+                    //Go to Leaderboard page
 //                  Navigator.of(context).pushNamed('/LeaderBoardPage');
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(22.0),
-                          child: FaIcon(
-                            FontAwesomeIcons.upload,
-                            color: Colors.white,
-                            size: 26,
-                          ),
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(22.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.upload,
+                          color: Colors.white,
+                          size: 26,
                         ),
+                      ),
 
-                        AutoSizeText(
-                          "Select Image",
-                          style: GoogleFonts.balooBhai(
-                              fontSize: 25, color: Colors.white),
-                        ),
+                      AutoSizeText(
+                        "Select Image",
+                        style: GoogleFonts.balooBhai(
+                            fontSize: 25, color: Colors.white),
+                      ),
 //                    FaIcon(
 //                      FontAwesomeIcons.arrowAltCircleRight,
 //                      color: Colors.white,
 //                      size: 25,
 //                    )
-                      ],
-                    ),
-//                    color: Constants.themeLightGreen,
-                    splashColor: Constants.themeGreen,
+                    ],
                   ),
+//                    color: Constants.themeLightGreen,
+                  splashColor: Constants.themeGreen,
                 ),
               ),
-              _image == null
-                  ? Text('No image selected.')
-                  : SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                  height: 300,
+            ),
+            _image == null
+                ? Text('No image selected.')
+                : SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                height: 150,
 
-                  child: Image.file(_image)),
+                child: Image.file(_image)),
 //            Text("Select an image."),
-              SizedBox(
-                height: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    focusNode: FocusNode(skipTraversal: true),
-                    controller: txtCon,
-                    decoration: InputDecoration(
-                      labelText: "Enter a description!",
-                    ),
-                    keyboardType: TextInputType.text,
-                    autofocus: false,
-                    autofillHints: ["dsfsd"],
-                    onChanged: (val) {},
-                    onSubmitted: (des) {
-                      print("SUB: " + des);
-                      postInfo.description = des;
-                      FocusScope.of(context).unfocus();
-                    },
+            SizedBox(
+              height: 100,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  focusNode: FocusNode(skipTraversal: true),
+                  controller: txtCon,
+                  decoration: InputDecoration(
+                    labelText: "Enter a description!",
+                  ),
+                  keyboardType: TextInputType.text,
+                  autofocus: false,
+                  autofillHints: ["dsfsd"],
+                  onChanged: (val) {},
+                  onSubmitted: (des) {
+                    print("SUB: " + des);
+                    postInfo.description = des;
+                    FocusScope.of(context).unfocus();
+                  },
 //                onEditingComplete: (){
 //                  print("DONE");
 ////                  txtCon.
@@ -224,65 +222,64 @@ class _NewPostPageState extends State<NewPostPage> {
 //
 //
 //                },
-                  ),
                 ),
               ),
-              postInfo.description == ""
-                  ? Text('')
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        postInfo.description,
-                        style: GoogleFonts.balooPaaji(
-                          fontSize: 16,
-                        ),
+            ),
+            postInfo.description == ""
+                ? Text('')
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      postInfo.description,
+                      style: GoogleFonts.balooPaaji(
+                        fontSize: 16,
                       ),
                     ),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Card(
-                  color: Constants.themeLightGreen,
-                  elevation: 24,
-                  child: FlatButton(
-                    onPressed: () async {
+                  ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Card(
+                color: Constants.themeLightGreen,
+                elevation: 24,
+                child: FlatButton(
+                  onPressed: () async {
 //                    showPictureSourceDialog(context);
-                      print(postInfo.selectedImg.toString());
+                    print(postInfo.selectedImg.toString());
 //                    await Requests.uploadImage(postInfo.selectedImg);
 
-                      //Go to Leaderboard page
+                    //Go to Leaderboard page
 //                  Navigator.of(context).pushNamed('/LeaderBoardPage');
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(22.0),
-                          child: Icon(
-                            Icons.send,
-                            color: Colors.white,
-                            size: 26,
-                          ),
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(22.0),
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                          size: 26,
                         ),
+                      ),
 
-                        AutoSizeText(
-                          "Upload Post",
-                          style: GoogleFonts.balooBhai(
-                              fontSize: 25, color: Colors.white),
-                        ),
+                      AutoSizeText(
+                        "Upload Post",
+                        style: GoogleFonts.balooBhai(
+                            fontSize: 25, color: Colors.white),
+                      ),
 //                    FaIcon(
 //                      FontAwesomeIcons.arrowAltCircleRight,
 //                      color: Colors.white,
 //                      size: 25,
 //                    )
-                      ],
-                    ),
-//                    color: Constants.themeLightGreen,
-                    splashColor: Constants.themeGreen,
+                    ],
                   ),
+//                    color: Constants.themeLightGreen,
+                  splashColor: Constants.themeGreen,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
