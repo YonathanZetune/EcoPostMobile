@@ -64,6 +64,10 @@ class LeaderboardPage extends StatelessWidget {
                         height: 140,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
+                          border: Border.all(
+                            width: 5,
+                            color: Constants.themeGreen,
+                          ),
                           image: DecorationImage(
                             image: NetworkImage(
                                 'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
@@ -80,6 +84,10 @@ class LeaderboardPage extends StatelessWidget {
                         height: 140,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
+                           border: Border.all(
+                            width: 5,
+                            color: Constants.themeGreen,
+                          ),
                           image: DecorationImage(
                             image: NetworkImage(
                                 'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
@@ -95,6 +103,10 @@ class LeaderboardPage extends StatelessWidget {
                         height: 140,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
+                           border: Border.all(
+                            width: 5,
+                            color: Constants.themeGreen,
+                          ),
                           image: DecorationImage(
                             image: NetworkImage(
                                 'https://www.cheatsheet.com/wp-content/uploads/2019/12/tom-holland-spider-man-homecoming-premiere.jpg'),
