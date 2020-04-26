@@ -66,6 +66,7 @@ class PostCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(7.0),
               child: ListTile(
+                dense: false,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
