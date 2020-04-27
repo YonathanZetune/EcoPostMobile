@@ -2,7 +2,7 @@
 
 # About this project!
 
-<iframe title="terra EarthxHack Video" width="480" height="390" src="https://www.youtube.com/watch?v=RCPPRbW1Fzc" frameborder="0" allowfullscreen></iframe>
+![terra EarthXHack Info Video (Click Image to View)](https://media.giphy.com/media/MFJgXMViNoQBvjmWSW/giphy.gif)](https://youtu.be/StTqXEQ2l-Y?t=35s "terra EarthXHack Video"
 
 # EarthXHack -- *terra*
 
