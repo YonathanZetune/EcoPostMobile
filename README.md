@@ -2,7 +2,7 @@
 
 # About this project!
 
-![terra EarthXHack Info Video](http://img.youtube.com/vi/RCPPRbW1Fzc/0.jpg)](https://www.youtube.com/watch?v=RCPPRbW1Fzc "terra EarthXHack Video")
+[![terra EarthXHack Info Video](http://img.youtube.com/vi/RCPPRbW1Fzc/0.jpg)](https://www.youtube.com/watch?v=RCPPRbW1Fzc "terra EarthXHack Video")
 
 # EarthXHack -- *terra*
 
