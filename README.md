@@ -2,6 +2,8 @@
 
 # About this project!
 
+[![Everything Is AWESOME](https://media.giphy.com/media/MFJgXMViNoQBvjmWSW/giphy.gif)![Everything Is AWESOME](https://media.giphy.com/media/MFJgXMViNoQBvjmWSW/giphy.gif)](https://youtu.be/StTqXEQ2l-Y?t=35s "terra EarthXHack Video"
+
 # EarthXHack -- *terra*
 
 * * *
