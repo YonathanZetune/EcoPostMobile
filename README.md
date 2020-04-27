@@ -2,7 +2,7 @@
 
 # About this project!
 
-####Click the image below to view the project video or click [here](https://www.youtube.com/watch?v=RCPPRbW1Fzc)
+#### Click the image below to view the project video or click [here](https://www.youtube.com/watch?v=RCPPRbW1Fzc)
 
 [![terra EarthXHack Info Video](http://img.youtube.com/vi/RCPPRbW1Fzc/0.jpg)](https://www.youtube.com/watch?v=RCPPRbW1Fzc "terra EarthXHack Video")
 
